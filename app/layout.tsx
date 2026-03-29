@@ -39,6 +39,12 @@ export const metadata: Metadata = {
     description: "Stop the back-and-forth. $19/mo online booking for service businesses.",
   },
   metadataBase: new URL("https://ziggyschedule.com"),
+
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
