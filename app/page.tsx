@@ -1,538 +1,1173 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import CTABanner from "./components/CTABanner";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "ZiggySchedule — Let Clients Book Themselves",
+  title: "ZiggySchedule — Online Scheduling Software for Service Businesses",
   description:
-    "Stop the back-and-forth. ZiggySchedule is online booking and scheduling software for service businesses. Share your link. Clients pick a time. Done. $19/mo.",
+    "The scheduling tool that works as hard as you do. Unlimited booking pages, custom intake forms, team scheduling, and paid bookings. Starting at $15/mo. 14-day free trial.",
   keywords: [
-    "online booking software",
-    "client scheduling",
-    "appointment booking",
-    "booking page",
+    "online scheduling software",
+    "appointment booking software",
     "service business scheduling",
+    "booking pages",
+    "Calendly alternative",
+    "salon scheduling software",
+    "coach booking software",
   ],
   openGraph: {
-    title: "ZiggySchedule — Let Clients Book Themselves",
-    description: "Stop the back-and-forth. $19/mo. Same as Calendly, way more features for service businesses.",
+    title: "ZiggySchedule — Online Scheduling Software for Service Businesses",
+    description:
+      "Unlimited bookings, intake forms, team scheduling, and paid bookings. Starting at $15/mo.",
     url: "https://ziggyschedule.com",
   },
 };
 
-const features = [
-  {
-    icon: "📅",
-    title: "Booking Page",
-    desc: "A beautiful, branded booking page your clients can use 24/7. No logins, no friction.",
-  },
-  {
-    icon: "🔗",
-    title: "Calendar Embed",
-    desc: "Paste one line of code. Your booking calendar appears on any website instantly.",
-  },
-  {
-    icon: "🌎",
-    title: "Timezone Detection",
-    desc: "Auto-detects your client's timezone. No more \"wait, what time is that for you?\"",
-  },
-  {
-    icon: "🚫",
-    title: "Cancellation Policy",
-    desc: "Set minimum notice windows and no-show fees. Protect your time automatically.",
-  },
-  {
-    icon: "📦",
-    title: "Package Bookings",
-    desc: "Sell 5-session coaching packages or monthly retainers. Clients pre-pay and auto-book.",
-  },
-  {
-    icon: "👥",
-    title: "Group Events & Classes",
-    desc: "Run yoga classes, webinars, or group sessions with seat limits and waitlists.",
-  },
-];
-
-const comparisonData = [
-  { feature: "Price", ziggy: "$19/mo", calendly: "$20/mo (Pro)", acuity: "$20–61/mo" },
-  { feature: "Booking page", ziggy: "✅", calendly: "✅", acuity: "✅" },
-  { feature: "Calendar embed", ziggy: "✅", calendly: "✅", acuity: "✅" },
-  { feature: "Timezone auto-detection", ziggy: "✅", calendly: "✅", acuity: "✅" },
-  { feature: "Cancellation policy", ziggy: "✅", calendly: "❌ (Teams only)", acuity: "✅" },
-  { feature: "Package bookings", ziggy: "✅", calendly: "❌", acuity: "✅ (higher plan)" },
-  { feature: "Group events / classes", ziggy: "✅", calendly: "✅ (Teams only)", acuity: "✅" },
-  { feature: "Waitlists", ziggy: "✅", calendly: "❌", acuity: "✅" },
-  { feature: "Built for service businesses", ziggy: "✅", calendly: "❌ (corporate focus)", acuity: "Partial" },
-];
+const accent = "#f472b6";
+const bg = "#0a0a0a";
+const cardBg = "#111111";
+const border = "1px solid #1f1f1f";
+const radius = "14px";
+const muted = "#a1a1aa";
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden pt-20 pb-24 px-4 sm:px-6">
-        {/* Background glow */}
+      <Script
+        id="json-ld-home"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "ZiggySchedule",
+            applicationCategory: "BusinessApplication",
+            offers: {
+              "@type": "Offer",
+              price: "15",
+              priceCurrency: "USD",
+            },
+          }),
+        }}
+      />
+
+      {/* ── Hero ───────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          background: bg,
+          padding: "88px 24px 80px",
+          textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
         <div
-          className="absolute inset-0 pointer-events-none"
           style={{
+            position: "absolute",
+            inset: 0,
             background:
-              "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(244,114,182,0.15) 0%, transparent 70%)",
+              "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(244,114,182,0.13) 0%, transparent 70%)",
+            pointerEvents: "none",
           }}
         />
-
-        <div className="max-w-5xl mx-auto text-center relative z-10">
-          <div
-            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm mb-8"
-            style={{ backgroundColor: "#18181b", border: "1px solid #27272a", color: "#a1a1aa" }}
+        <div
+          style={{
+            maxWidth: "880px",
+            margin: "0 auto",
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          <h1
+            style={{
+              fontSize: "clamp(2.6rem, 6vw, 4.5rem)",
+              fontWeight: 800,
+              lineHeight: 1.1,
+              marginBottom: "24px",
+              letterSpacing: "-0.02em",
+            }}
           >
-            <span style={{ color: "#f472b6" }}>●</span>
-            $19/mo — Same price as Calendly, built for service businesses
-          </div>
-
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-            Stop the <span style={{ color: "#f472b6" }}>back-and-forth.</span>
+            Online Scheduling Software
+            <br />
+            <span style={{ color: accent }}>Built for Service Businesses</span>
           </h1>
-
-          <p className="text-xl sm:text-2xl max-w-3xl mx-auto mb-10" style={{ color: "#a1a1aa" }}>
-            Share your link. Clients pick a time. Done.{" "}
-            <span className="text-white">$19/mo</span> — same as Calendly, way more features for service businesses.
+          <p
+            style={{
+              fontSize: "1.2rem",
+              color: muted,
+              maxWidth: "580px",
+              margin: "0 auto 40px",
+              lineHeight: 1.65,
+            }}
+          >
+            The scheduling tool that works as hard as you do. Share your link,
+            clients book themselves — unlimited bookings, custom intake forms,
+            and team scheduling from $15/mo.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          {/* CTAs */}
+          <div
+            style={{
+              display: "flex",
+              gap: "16px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              marginBottom: "36px",
+            }}
+          >
             <Link
-              href="https://app.ziggyschedule.com"
-              className="w-full sm:w-auto text-center px-8 py-4 rounded-full font-semibold text-lg transition-all hover:opacity-90 shadow-lg"
-              style={{ backgroundColor: "#f472b6", color: "#0f0a0a" }}
+              href="https://app.ziggyschedule.com/signup"
+              style={{
+                background: accent,
+                color: "#0a0a0a",
+                padding: "14px 32px",
+                borderRadius: "50px",
+                fontWeight: 700,
+                fontSize: "1rem",
+                textDecoration: "none",
+                display: "inline-block",
+              }}
             >
               Start Free Trial
             </Link>
             <Link
-              href="/features"
-              className="w-full sm:w-auto text-center px-8 py-4 rounded-full font-semibold text-lg transition-all border"
-              style={{ borderColor: "#27272a", color: "#a1a1aa" }}
+              href="#features"
+              style={{
+                background: "transparent",
+                color: "#fff",
+                padding: "14px 32px",
+                borderRadius: "50px",
+                fontWeight: 600,
+                fontSize: "1rem",
+                textDecoration: "none",
+                display: "inline-block",
+                border: "1px solid #2a2a2a",
+              }}
             >
-              See How It Works
+              See Features
             </Link>
           </div>
 
-          {/* Trust bar */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm" style={{ color: "#a1a1aa" }}>
-            {["14-day free trial", "No credit card", "Cancel anytime"].map((item, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span style={{ color: "#f472b6" }}>✓</span>
-                {item}
+          {/* Trust badges */}
+          <div
+            style={{
+              display: "flex",
+              gap: "28px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            {["14-day free trial", "No credit card", "Cancel anytime"].map(
+              (badge) => (
+                <span
+                  key={badge}
+                  style={{
+                    color: muted,
+                    fontSize: "0.875rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "6px",
+                  }}
+                >
+                  <span style={{ color: accent }}>✓</span>
+                  {badge}
+                </span>
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Problem Strip ──────────────────────────────────────────────── */}
+      <section
+        style={{
+          background: "#0d0d0d",
+          padding: "72px 24px",
+          borderTop: "1px solid #1a1a1a",
+          borderBottom: "1px solid #1a1a1a",
+        }}
+      >
+        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
+          <h2
+            style={{
+              textAlign: "center",
+              fontSize: "2rem",
+              fontWeight: 700,
+              marginBottom: "48px",
+            }}
+          >
+            Sound familiar?
+          </h2>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "24px",
+            }}
+          >
+            {[
+              {
+                icon: "😩",
+                title: "Back-and-forth booking chaos",
+                desc: '"Are you free Tuesday? No? How about Thursday?" Hours wasted every week on scheduling emails.',
+              },
+              {
+                icon: "💸",
+                title: "No-shows cost you money",
+                desc: "Clients forget appointments. No reminders means lost time and lost revenue — every single week.",
+              },
+              {
+                icon: "🧩",
+                title: "Calendly wasn't built for you",
+                desc: "Calendly is great for corporate meetings. It's not designed for salons, trainers, coaches, or trades.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                style={{
+                  background: cardBg,
+                  border,
+                  borderRadius: radius,
+                  padding: "32px 28px",
+                }}
+              >
+                <div style={{ fontSize: "2.5rem", marginBottom: "16px" }}>
+                  {item.icon}
+                </div>
+                <h3
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "1.1rem",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p style={{ color: muted, fontSize: "0.9375rem", lineHeight: 1.65, margin: 0 }}>
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
-
-          {/* Booking Page Mockup */}
-          <div
-            className="mt-16 mx-auto max-w-2xl rounded-2xl overflow-hidden"
-            style={{ border: "1px solid #27272a", backgroundColor: "#18181b" }}
-          >
-            <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: "1px solid #27272a", backgroundColor: "#0f0a0a" }}>
-              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#ff1744" }} />
-              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#f472b6" }} />
-              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#27272a" }} />
-              <div
-                className="flex-1 ml-2 text-center text-xs rounded py-0.5"
-                style={{ backgroundColor: "#27272a", color: "#a1a1aa" }}
-              >
-                ziggyschedule.com/book/your-name
-              </div>
-            </div>
-            <div className="p-8">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full" style={{ backgroundColor: "#f472b6", opacity: 0.3 }} />
-                <div>
-                  <div className="h-3 w-32 rounded mb-2" style={{ backgroundColor: "#27272a" }} />
-                  <div className="h-2 w-48 rounded" style={{ backgroundColor: "#27272a" }} />
-                </div>
-              </div>
-              <div className="grid grid-cols-7 gap-1 mb-4">
-                {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
-                  <div key={i} className="text-center text-xs py-1" style={{ color: "#a1a1aa" }}>{d}</div>
-                ))}
-                {Array.from({ length: 35 }).map((_, i) => {
-                  const day = i - 2;
-                  const isHighlight = [7, 9, 14, 16].includes(day);
-                  const isPast = day < 1 || day > 31;
-                  return (
-                    <div
-                      key={i}
-                      className="text-center text-xs py-2 rounded cursor-pointer"
-                      style={{
-                        backgroundColor: isHighlight ? "#f472b6" : "transparent",
-                        color: isPast ? "#27272a" : isHighlight ? "#0f0a0a" : "#a1a1aa",
-                      }}
-                    >
-                      {isPast ? "" : day}
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="flex gap-2 flex-wrap">
-                {["9:00 AM", "10:00 AM", "2:00 PM", "3:30 PM"].map((t) => (
-                  <div
-                    key={t}
-                    className="px-3 py-1.5 rounded-full text-xs font-medium"
-                    style={{ border: "1px solid #f472b6", color: "#f472b6" }}
-                  >
-                    {t}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Problem / Solution */}
-      <section className="py-20 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
-            The old way is broken.
-          </h2>
-          <p className="text-center mb-12" style={{ color: "#a1a1aa" }}>
-            Here&apos;s what scheduling looks like before and after ZiggySchedule.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Before */}
-            <div
-              className="rounded-2xl p-8"
-              style={{ backgroundColor: "#18181b", border: "1px solid #27272a" }}
+      {/* ── Features ───────────────────────────────────────────────────── */}
+      <section id="features" style={{ background: bg, padding: "88px 24px" }}>
+        <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "56px" }}>
+            <h2
+              style={{
+                fontSize: "2.25rem",
+                fontWeight: 800,
+                marginBottom: "16px",
+              }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-lg" style={{ backgroundColor: "#27272a" }}>
-                  😩
-                </div>
-                <h3 className="font-bold text-lg">Back-and-forth emails</h3>
-              </div>
-              <div className="space-y-3">
-                {[
-                  '"Are you free Tuesday at 2pm?"',
-                  '"Sorry, I have a call. How about Thursday?"',
-                  '"Thursday works! Morning or afternoon?"',
-                  '"Wait, can we do next week instead?"',
-                  "[3 days later, still no meeting booked]",
-                ].map((msg, i) => (
-                  <div
-                    key={i}
-                    className="text-sm px-4 py-3 rounded-xl"
-                    style={{
-                      backgroundColor: i % 2 === 0 ? "#0f0a0a" : "#1a1a1a",
-                      color: i === 4 ? "#a1a1aa" : "#ffffff",
-                      fontStyle: i === 4 ? "italic" : "normal",
-                      border: "1px solid #27272a",
-                    }}
-                  >
-                    {msg}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* After */}
-            <div
-              className="rounded-2xl p-8"
-              style={{ backgroundColor: "#18181b", border: "1px solid #f472b6", boxShadow: "0 0 40px rgba(244,114,182,0.1)" }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-lg" style={{ backgroundColor: "#f472b6", color: "#0f0a0a" }}>
-                  ✓
-                </div>
-                <h3 className="font-bold text-lg">Share one link, they book themselves</h3>
-              </div>
-              <div className="space-y-4">
-                <div
-                  className="text-sm px-4 py-3 rounded-xl"
-                  style={{ backgroundColor: "#0f0a0a", border: "1px solid #27272a" }}
-                >
-                  You: &ldquo;Here&apos;s my booking link — pick what works for you!&rdquo;
-                </div>
-                <div
-                  className="text-sm px-4 py-3 rounded-xl text-center font-semibold"
-                  style={{ backgroundColor: "#f472b6", color: "#0f0a0a" }}
-                >
-                  📅 Meeting confirmed — Thursday 10:00 AM
-                </div>
-                <div
-                  className="text-sm px-4 py-3 rounded-xl"
-                  style={{ backgroundColor: "#0f0a0a", border: "1px solid #27272a", color: "#a1a1aa" }}
-                >
-                  ✉️ Confirmation sent to both of you automatically
-                </div>
-                <div
-                  className="text-sm px-4 py-3 rounded-xl"
-                  style={{ backgroundColor: "#0f0a0a", border: "1px solid #27272a", color: "#a1a1aa" }}
-                >
-                  ⏰ Reminder sent 24 hours before
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Grid */}
-      <section className="py-20 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Everything a service business needs
+              Everything your booking workflow needs
             </h2>
-            <p style={{ color: "#a1a1aa" }}>
+            <p style={{ color: muted, fontSize: "1.0625rem" }}>
               Built for coaches, consultants, salons, gyms, and anyone who sells their time.
             </p>
           </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f) => (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {[
+              {
+                icon: "📅",
+                name: "Unlimited Booking Pages",
+                desc: "Create as many booking pages as you need — one per service, staff member, or location. No caps.",
+              },
+              {
+                icon: "📝",
+                name: "Custom Intake Forms",
+                desc: "Ask exactly what you need before the appointment. Custom questions per service type.",
+              },
+              {
+                icon: "📧",
+                name: "Automated Email Reminders",
+                desc: "Automatic confirmation and reminder emails sent to clients. Reduce no-shows without lifting a finger.",
+              },
+              {
+                icon: "👥",
+                name: "Group Events & Classes",
+                desc: "Run group sessions, workshops, or classes with seat limits, waitlists, and recurring schedules.",
+              },
+              {
+                icon: "🔄",
+                name: "Round-Robin Team Scheduling",
+                desc: "Distribute bookings fairly across your team. Clients pick a service — you handle who shows up.",
+              },
+              {
+                icon: "💳",
+                name: "Paid Bookings via Stripe",
+                desc: "Collect deposits or full payment at booking. Stripe integration built right in. (Business plan)",
+              },
+              {
+                icon: "📱",
+                name: "Mobile-Friendly Booking Pages",
+                desc: "Every booking page is fully responsive. Clients book from any device without friction.",
+              },
+              {
+                icon: "⏱️",
+                name: "Buffer Times & Blackout Dates",
+                desc: "Set prep time between appointments and block off unavailable dates with ease.",
+              },
+            ].map((f) => (
               <div
-                key={f.title}
-                className="rounded-2xl p-6 transition-all hover:-translate-y-1"
-                style={{ backgroundColor: "#18181b", border: "1px solid #27272a" }}
+                key={f.name}
+                style={{
+                  background: cardBg,
+                  border,
+                  borderRadius: radius,
+                  padding: "28px 24px",
+                }}
               >
-                <div className="text-3xl mb-4">{f.icon}</div>
-                <h3 className="font-bold text-lg mb-2">{f.title}</h3>
-                <p className="text-sm" style={{ color: "#a1a1aa" }}>{f.desc}</p>
+                <div style={{ fontSize: "2rem", marginBottom: "14px" }}>{f.icon}</div>
+                <h3
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "1.05rem",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {f.name}
+                </h3>
+                <p style={{ color: muted, fontSize: "0.9rem", lineHeight: 1.65, margin: 0 }}>
+                  {f.desc}
+                </p>
               </div>
             ))}
           </div>
-
-          <div className="text-center mt-8">
-            <Link href="/features" style={{ color: "#f472b6" }} className="text-sm hover:underline">
-              See all features →
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Deep Feature: Calendar Embed */}
-      <section className="py-20 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div
-                className="inline-block text-xs px-3 py-1 rounded-full mb-4"
-                style={{ backgroundColor: "#18181b", color: "#f472b6", border: "1px solid #f472b6" }}
-              >
-                EMBED ANYWHERE
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                Your booking calendar,<br />on your website.
-              </h2>
-              <p className="mb-6" style={{ color: "#a1a1aa" }}>
-                Paste one line of code and your calendar appears directly on your website. No redirects.
-                No &ldquo;click here to book on another site.&rdquo; Clients stay on your brand, your page.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Works on Squarespace, Wix, WordPress, Webflow",
-                  "Mobile-responsive by default",
-                  "Matches your brand colors",
-                  "No iFrame headaches",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm">
-                    <span style={{ color: "#f472b6" }}>✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div
-              className="rounded-2xl p-6 font-mono text-sm"
-              style={{ backgroundColor: "#18181b", border: "1px solid #27272a" }}
-            >
-              <div className="flex items-center gap-2 mb-4" style={{ color: "#a1a1aa" }}>
-                <span>📄 index.html</span>
-              </div>
-              <pre className="text-sm leading-relaxed overflow-x-auto" style={{ color: "#a1a1aa" }}>
-{`<html>
-  <body>
-    <!-- Your website content -->
-    <h1>Book a session</h1>
-
-    <!-- Add this one line: -->
-    <script src="https://ziggyschedule.com
-      /embed.js"
-      data-user="your-name">
-    </script>
-
-  </body>
-</html>`}
-              </pre>
-              <div
-                className="mt-4 p-3 rounded-lg text-xs"
-                style={{ backgroundColor: "#0f0a0a", color: "#f472b6", border: "1px solid #27272a" }}
-              >
-                ✓ That&apos;s it. Calendar appears automatically.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Timezone Detection */}
-      <section className="py-20 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div
-              className="rounded-2xl p-8 order-2 md:order-1"
-              style={{ backgroundColor: "#18181b", border: "1px solid #27272a" }}
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-3 rounded-xl" style={{ backgroundColor: "#0f0a0a", border: "1px solid #27272a" }}>
-                  <div>
-                    <div className="text-sm font-medium">Sarah (Your Client)</div>
-                    <div className="text-xs" style={{ color: "#a1a1aa" }}>📍 New York, NY — EST</div>
-                  </div>
-                  <div className="text-sm font-bold" style={{ color: "#f472b6" }}>10:00 AM</div>
-                </div>
-                <div className="flex items-center justify-center">
-                  <div className="text-2xl">⟺</div>
-                </div>
-                <div className="flex items-center justify-between p-3 rounded-xl" style={{ backgroundColor: "#0f0a0a", border: "1px solid #27272a" }}>
-                  <div>
-                    <div className="text-sm font-medium">You</div>
-                    <div className="text-xs" style={{ color: "#a1a1aa" }}>📍 Los Angeles, CA — PST</div>
-                  </div>
-                  <div className="text-sm font-bold" style={{ color: "#f472b6" }}>7:00 AM</div>
-                </div>
-                <div
-                  className="text-center text-xs py-2 rounded-lg"
-                  style={{ backgroundColor: "#f472b6", color: "#0f0a0a", fontWeight: "bold" }}
-                >
-                  ✓ Both calendars updated automatically
-                </div>
-              </div>
-            </div>
-
-            <div className="order-1 md:order-2">
-              <div
-                className="inline-block text-xs px-3 py-1 rounded-full mb-4"
-                style={{ backgroundColor: "#18181b", color: "#f472b6", border: "1px solid #f472b6" }}
-              >
-                AUTO TIMEZONE
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                No more &ldquo;wait, what time is that for you?&rdquo;
-              </h2>
-              <p style={{ color: "#a1a1aa" }}>
-                ZiggySchedule automatically detects your client&apos;s timezone. They see times in their local time,
-                you see them in yours. Confirmations and reminders go out in both timezones.
-                No confusion, no missed calls.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="py-20 px-4 sm:px-6" id="pricing">
-        <div className="max-w-lg mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Simple pricing.</h2>
-          <p className="mb-12" style={{ color: "#a1a1aa" }}>
-            One plan. Everything included. No upsells.
-          </p>
-
-          <div
-            className="rounded-2xl p-8"
+      {/* ── Coming Soon Strip ──────────────────────────────────────────── */}
+      <section
+        style={{
+          background: "#0d0d0d",
+          padding: "64px 24px",
+          borderTop: "1px solid #1a1a1a",
+          borderBottom: "1px solid #1a1a1a",
+        }}
+      >
+        <div
+          style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}
+        >
+          <h2
             style={{
-              backgroundColor: "#18181b",
-              border: "2px solid #f472b6",
-              boxShadow: "0 0 60px rgba(244,114,182,0.15)",
+              fontSize: "1.75rem",
+              fontWeight: 700,
+              marginBottom: "40px",
             }}
           >
-            <div className="text-sm font-semibold mb-2" style={{ color: "#f472b6" }}>ALL FEATURES INCLUDED</div>
-            <div className="flex items-end justify-center gap-2 mb-2">
-              <span className="text-6xl font-bold">$19</span>
-              <span style={{ color: "#a1a1aa" }}>/mo</span>
-            </div>
-            <p className="text-sm mb-8" style={{ color: "#a1a1aa" }}>
-              Same price as Calendly Pro. Way more features for service businesses.
-            </p>
-            <Link
-              href="https://app.ziggyschedule.com"
-              className="block w-full text-center py-3 rounded-full font-semibold text-lg transition-all hover:opacity-90 mb-4"
-              style={{ backgroundColor: "#f472b6", color: "#0f0a0a" }}
-            >
-              Start 14-Day Free Trial
-            </Link>
-            <p className="text-xs" style={{ color: "#a1a1aa" }}>No credit card required</p>
-
-            <div style={{ borderTop: "1px solid #27272a" }} className="mt-8 pt-8 grid grid-cols-2 gap-3 text-left text-sm">
-              {[
-                "Booking page", "Calendar embed", "Timezone auto-detection",
-                "Cancellation policy", "Package bookings", "Group events/classes",
-                "Waitlists", "Email reminders", "Custom branding", "Unlimited bookings",
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-2">
-                  <span style={{ color: "#f472b6" }}>✓</span>
-                  {item}
+            On the roadmap
+          </h2>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {[
+              {
+                icon: "📆",
+                name: "Google Calendar Sync",
+                desc: "Two-way sync with Google Calendar. One schedule, zero conflicts.",
+              },
+              {
+                icon: "📲",
+                name: "Mobile App",
+                desc: "Manage your bookings on the go — iOS and Android apps coming soon.",
+              },
+              {
+                icon: "💬",
+                name: "SMS Reminders (Twilio BYOK)",
+                desc: "Text reminders via your own Twilio account. Your key, your cost.",
+              },
+            ].map((item) => (
+              <div
+                key={item.name}
+                style={{
+                  background: cardBg,
+                  border,
+                  borderRadius: radius,
+                  padding: "28px 24px",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "16px",
+                    right: "16px",
+                    background: "#ff9500",
+                    color: "#fff",
+                    fontSize: "0.7rem",
+                    fontWeight: 700,
+                    padding: "3px 10px",
+                    borderRadius: "20px",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  IN DEVELOPMENT
                 </div>
-              ))}
-            </div>
+                <div style={{ fontSize: "2rem", marginBottom: "14px" }}>
+                  {item.icon}
+                </div>
+                <h3
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "1.05rem",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {item.name}
+                </h3>
+                <p style={{ color: muted, fontSize: "0.9rem", lineHeight: 1.65, margin: 0 }}>
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
-
-          <p className="mt-6 text-sm" style={{ color: "#a1a1aa" }}>
-            Need multiple team members?{" "}
-            <Link href="/pricing" style={{ color: "#f472b6" }} className="hover:underline">
-              See team pricing →
-            </Link>
-          </p>
         </div>
       </section>
 
-      {/* Comparison Table */}
-      <section className="py-20 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
-            How we stack up
-          </h2>
-          <p className="text-center mb-12" style={{ color: "#a1a1aa" }}>
-            Same price as Calendly. More features for service businesses.
-          </p>
+      {/* ── Industries ─────────────────────────────────────────────────── */}
+      <section style={{ background: bg, padding: "88px 24px" }}>
+        <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "56px" }}>
+            <h2
+              style={{
+                fontSize: "2.25rem",
+                fontWeight: 800,
+                marginBottom: "16px",
+              }}
+            >
+              Built for your industry
+            </h2>
+            <p style={{ color: muted, fontSize: "1.0625rem" }}>
+              From salons to trades — ZiggySchedule fits how your business
+              actually books.
+            </p>
+          </div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {[
+              {
+                icon: "💆",
+                name: "Salons & Spas",
+                desc: "Appointment booking + rebooking flows + staff scheduling across your full team.",
+              },
+              {
+                icon: "🏋️",
+                name: "Fitness & Personal Training",
+                desc: "Class schedules + 1:1 sessions + membership-based recurring bookings.",
+              },
+              {
+                icon: "🎓",
+                name: "Tutors & Coaches",
+                desc: "Discovery calls + recurring sessions + multi-session packages in one flow.",
+              },
+              {
+                icon: "🩺",
+                name: "Healthcare & Therapy",
+                desc: "New patient intake + recurring appointments + automated reminder sequences.",
+              },
+              {
+                icon: "🔨",
+                name: "Contractors & Trades",
+                desc: "Estimate appointment booking + job scheduling + follow-up reminders.",
+              },
+              {
+                icon: "🏢",
+                name: "Consultants & Agencies",
+                desc: "Discovery → Proposal → Kickoff pipeline with scheduling at each step.",
+              },
+              {
+                icon: "📸",
+                name: "Photographers & Creatives",
+                desc: "Shoot bookings + deposit collection + delivery call scheduling.",
+              },
+              {
+                icon: "🐾",
+                name: "Pet Services",
+                desc: "Grooming + boarding + vet appointment flows with intake and reminders.",
+              },
+            ].map((ind) => (
+              <div
+                key={ind.name}
+                style={{
+                  background: cardBg,
+                  border,
+                  borderRadius: radius,
+                  padding: "24px 20px",
+                }}
+              >
+                <div style={{ fontSize: "1.75rem", marginBottom: "10px" }}>
+                  {ind.icon}
+                </div>
+                <h3
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "1rem",
+                    marginBottom: "8px",
+                  }}
+                >
+                  {ind.name}
+                </h3>
+                <p style={{ color: muted, fontSize: "0.875rem", lineHeight: 1.65, margin: 0 }}>
+                  {ind.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: "40px" }}>
+            <p style={{ color: muted, fontSize: "0.9375rem" }}>
+              Need a custom setup?{" "}
+              <a
+                href="mailto:hello@ziggyschedule.com"
+                style={{ color: accent, textDecoration: "underline" }}
+              >
+                Contact us.
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
 
-          <div className="overflow-x-auto">
-            <table className="w-full" style={{ borderCollapse: "collapse" }}>
+      {/* ── Comparison Table ───────────────────────────────────────────── */}
+      <section
+        style={{
+          background: "#0d0d0d",
+          padding: "88px 24px",
+          borderTop: "1px solid #1a1a1a",
+        }}
+      >
+        <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <h2
+              style={{
+                fontSize: "2.25rem",
+                fontWeight: 800,
+                marginBottom: "16px",
+              }}
+            >
+              ZiggySchedule vs Calendly
+            </h2>
+            <p style={{ color: muted, fontSize: "1.0625rem" }}>
+              Team scheduling for 10 people at $35 vs Calendly&apos;s $160.
+              You do the math.
+            </p>
+          </div>
+          <div style={{ overflowX: "auto" }}>
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                fontSize: "0.9375rem",
+              }}
+            >
               <thead>
-                <tr style={{ borderBottom: "1px solid #27272a" }}>
-                  <th className="text-left py-4 px-4 text-sm font-semibold" style={{ color: "#a1a1aa" }}>Feature</th>
-                  <th className="py-4 px-4 text-center text-sm font-bold" style={{ color: "#f472b6" }}>ZiggySchedule</th>
-                  <th className="py-4 px-4 text-center text-sm font-semibold" style={{ color: "#a1a1aa" }}>Calendly</th>
-                  <th className="py-4 px-4 text-center text-sm font-semibold" style={{ color: "#a1a1aa" }}>Acuity</th>
+                <tr style={{ borderBottom: "1px solid #1f1f1f" }}>
+                  <th
+                    style={{
+                      textAlign: "left",
+                      padding: "14px 16px",
+                      color: muted,
+                      fontWeight: 600,
+                    }}
+                  >
+                    Feature
+                  </th>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      padding: "14px 16px",
+                      color: accent,
+                      fontWeight: 700,
+                    }}
+                  >
+                    ZiggySchedule
+                  </th>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      padding: "14px 16px",
+                      color: muted,
+                      fontWeight: 600,
+                    }}
+                  >
+                    Calendly
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                {comparisonData.map((row, i) => (
+                {[
+                  ["Starting price", "$15/mo", "$12/user/mo"],
+                  ["10-person team cost", "$35/mo", "$120–$160/mo"],
+                  ["Unlimited booking pages", "✅", "✅"],
+                  ["Custom intake forms per service", "✅", "❌ Teams only"],
+                  ["Group events & classes", "✅", "✅ Teams only"],
+                  ["Round-robin team scheduling", "✅", "✅ Teams only"],
+                  ["Paid bookings via Stripe", "✅ Business plan", "✅ Pro+"],
+                  ["SMS reminders (BYOK Twilio)", "✅ Team+", "❌"],
+                  ["Buffer times & blackout dates", "✅", "✅"],
+                  ["Resource management", "✅ Business", "❌"],
+                  ["Full analytics", "✅ Business", "❌ Teams only"],
+                  ["Built for service businesses", "✅", "❌ Corporate focus"],
+                ].map(([feature, us, them], i) => (
                   <tr
-                    key={row.feature}
-                    style={{ borderBottom: "1px solid #27272a", backgroundColor: i % 2 === 0 ? "transparent" : "rgba(24,24,27,0.5)" }}
+                    key={feature}
+                    style={{
+                      borderBottom: "1px solid #1a1a1a",
+                      background:
+                        i % 2 === 0
+                          ? "transparent"
+                          : "rgba(17,17,17,0.6)",
+                    }}
                   >
-                    <td className="py-3 px-4 text-sm">{row.feature}</td>
-                    <td className="py-3 px-4 text-center text-sm font-medium" style={{ color: "#f472b6" }}>{row.ziggy}</td>
-                    <td className="py-3 px-4 text-center text-sm" style={{ color: "#a1a1aa" }}>{row.calendly}</td>
-                    <td className="py-3 px-4 text-center text-sm" style={{ color: "#a1a1aa" }}>{row.acuity}</td>
+                    <td style={{ padding: "12px 16px" }}>{feature}</td>
+                    <td
+                      style={{
+                        padding: "12px 16px",
+                        textAlign: "center",
+                        color: accent,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {us}
+                    </td>
+                    <td
+                      style={{
+                        padding: "12px 16px",
+                        textAlign: "center",
+                        color: muted,
+                      }}
+                    >
+                      {them}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Link href="/vs/calendly" style={{ color: "#f472b6" }} className="text-center text-sm hover:underline">
-              Full ZiggySchedule vs Calendly comparison →
-            </Link>
-            <Link href="/vs/acuity" style={{ color: "#f472b6" }} className="text-center text-sm hover:underline">
-              Full ZiggySchedule vs Acuity comparison →
+          <div style={{ textAlign: "center", marginTop: "32px" }}>
+            <Link
+              href="/vs/calendly"
+              style={{
+                color: accent,
+                textDecoration: "underline",
+                fontSize: "0.9375rem",
+              }}
+            >
+              See the full comparison →
             </Link>
           </div>
         </div>
       </section>
 
-      <CTABanner />
+      {/* ── Pricing ────────────────────────────────────────────────────── */}
+      <section id="pricing" style={{ background: bg, padding: "88px 24px" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "56px" }}>
+            <h2
+              style={{
+                fontSize: "2.25rem",
+                fontWeight: 800,
+                marginBottom: "16px",
+              }}
+            >
+              Simple, honest pricing
+            </h2>
+            <p style={{ color: muted, fontSize: "1.0625rem" }}>
+              Start free. Scale when you&apos;re ready. No surprises.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
+              gap: "24px",
+              maxWidth: "980px",
+              margin: "0 auto",
+            }}
+          >
+            {/* Solo */}
+            <div
+              style={{
+                background: cardBg,
+                border,
+                borderRadius: radius,
+                padding: "36px 28px",
+              }}
+            >
+              <div
+                style={{
+                  fontWeight: 700,
+                  fontSize: "1.15rem",
+                  marginBottom: "8px",
+                }}
+              >
+                Solo
+              </div>
+              <div
+                style={{
+                  fontSize: "3rem",
+                  fontWeight: 800,
+                  marginBottom: "4px",
+                  lineHeight: 1,
+                }}
+              >
+                $15
+                <span
+                  style={{
+                    fontSize: "1rem",
+                    color: muted,
+                    fontWeight: 400,
+                  }}
+                >
+                  /mo
+                </span>
+              </div>
+              <p
+                style={{
+                  color: muted,
+                  fontSize: "0.875rem",
+                  marginBottom: "28px",
+                  marginTop: "8px",
+                }}
+              >
+                Perfect for solo practitioners
+              </p>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: "0 0 28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+              >
+                {[
+                  "1 user",
+                  "Unlimited bookings",
+                  "Custom intake forms",
+                  "1 service type",
+                  "Automated email reminders",
+                  "Mobile-friendly booking page",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "0.9rem",
+                      color: muted,
+                    }}
+                  >
+                    <span style={{ color: accent }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="https://app.ziggyschedule.com/signup"
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: "10px",
+                  border: `1px solid ${accent}`,
+                  color: accent,
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  fontSize: "0.9375rem",
+                }}
+              >
+                Start Free Trial
+              </Link>
+            </div>
+
+            {/* Team — featured */}
+            <div
+              style={{
+                background: cardBg,
+                border: `2px solid ${accent}`,
+                borderRadius: radius,
+                padding: "36px 28px",
+                position: "relative",
+                boxShadow: "0 0 48px rgba(244,114,182,0.15)",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: "-14px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  background: accent,
+                  color: "#0a0a0a",
+                  fontWeight: 700,
+                  fontSize: "0.72rem",
+                  padding: "4px 16px",
+                  borderRadius: "20px",
+                  whiteSpace: "nowrap",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                MOST POPULAR
+              </div>
+              <div
+                style={{
+                  fontWeight: 700,
+                  fontSize: "1.15rem",
+                  marginBottom: "8px",
+                }}
+              >
+                Team
+              </div>
+              <div
+                style={{
+                  fontSize: "3rem",
+                  fontWeight: 800,
+                  marginBottom: "4px",
+                  lineHeight: 1,
+                }}
+              >
+                $35
+                <span
+                  style={{
+                    fontSize: "1rem",
+                    color: muted,
+                    fontWeight: 400,
+                  }}
+                >
+                  /mo
+                </span>
+              </div>
+              <p
+                style={{
+                  color: muted,
+                  fontSize: "0.875rem",
+                  marginBottom: "28px",
+                  marginTop: "8px",
+                }}
+              >
+                Everything in Solo, plus:
+              </p>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: "0 0 28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+              >
+                {[
+                  "Up to 10 users",
+                  "Round-robin scheduling",
+                  "Group events & classes",
+                  "SMS reminders (BYOK Twilio)",
+                  "Team management dashboard",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "0.9rem",
+                      color: muted,
+                    }}
+                  >
+                    <span style={{ color: accent }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="https://app.ziggyschedule.com/signup"
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: "10px",
+                  background: accent,
+                  color: "#0a0a0a",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  fontSize: "0.9375rem",
+                }}
+              >
+                Start Free Trial
+              </Link>
+            </div>
+
+            {/* Business */}
+            <div
+              style={{
+                background: cardBg,
+                border,
+                borderRadius: radius,
+                padding: "36px 28px",
+              }}
+            >
+              <div
+                style={{
+                  fontWeight: 700,
+                  fontSize: "1.15rem",
+                  marginBottom: "8px",
+                }}
+              >
+                Business
+              </div>
+              <div
+                style={{
+                  fontSize: "3rem",
+                  fontWeight: 800,
+                  marginBottom: "4px",
+                  lineHeight: 1,
+                }}
+              >
+                $59
+                <span
+                  style={{
+                    fontSize: "1rem",
+                    color: muted,
+                    fontWeight: 400,
+                  }}
+                >
+                  /mo
+                </span>
+              </div>
+              <p
+                style={{
+                  color: muted,
+                  fontSize: "0.875rem",
+                  marginBottom: "28px",
+                  marginTop: "8px",
+                }}
+              >
+                Everything in Team, plus:
+              </p>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: "0 0 28px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+              >
+                {[
+                  "Unlimited users",
+                  "Paid bookings via Stripe",
+                  "Resource management",
+                  "Full analytics dashboard",
+                  "Priority support",
+                ].map((item) => (
+                  <li
+                    key={item}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "0.9rem",
+                      color: muted,
+                    }}
+                  >
+                    <span style={{ color: accent }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="https://app.ziggyschedule.com/signup"
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  padding: "12px",
+                  borderRadius: "10px",
+                  border: "1px solid #2a2a2a",
+                  color: "#fff",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  fontSize: "0.9375rem",
+                }}
+              >
+                Start Free Trial
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          background: "#0d0d0d",
+          padding: "88px 24px",
+          borderTop: "1px solid #1a1a1a",
+        }}
+      >
+        <div style={{ maxWidth: "780px", margin: "0 auto" }}>
+          <h2
+            style={{
+              textAlign: "center",
+              fontSize: "2.25rem",
+              fontWeight: 800,
+              marginBottom: "56px",
+            }}
+          >
+            Frequently asked questions
+          </h2>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+          >
+            {[
+              {
+                q: "Is ZiggySchedule better than Calendly for service businesses?",
+                a: "Yes — Calendly is designed for corporate meeting booking. ZiggySchedule is purpose-built for service businesses: salons, coaches, trainers, contractors. You get intake forms, paid bookings, and real team scheduling at a fraction of the cost.",
+              },
+              {
+                q: "How does the 14-day free trial work?",
+                a: "Sign up and get full access to all features on your chosen plan for 14 days — no credit card required. After the trial, add payment to continue. No automatic charges.",
+              },
+              {
+                q: "Can clients book without creating an account?",
+                a: "Yes. Your booking page is fully public — clients choose a service, pick a time, fill in their details, and they're booked. No logins, no friction, no abandoned bookings.",
+              },
+              {
+                q: "What's the difference between Solo, Team, and Business?",
+                a: "Solo ($15/mo) is for one user with unlimited bookings and intake forms. Team ($35/mo) adds up to 10 users, round-robin scheduling, group events, and SMS reminders. Business ($59/mo) unlocks unlimited users, Stripe payments, resources, analytics, and priority support.",
+              },
+              {
+                q: "Can I collect payment at the time of booking?",
+                a: "Yes — on the Business plan, clients can pay via Stripe when they book. Collect a deposit or full payment upfront. Great for reducing no-shows.",
+              },
+              {
+                q: "What does 'BYOK' mean for SMS reminders?",
+                a: "BYOK means Bring Your Own Key — you connect your own Twilio account to send SMS reminders. You control your messaging, your costs, and your phone number. No markup from us.",
+              },
+            ].map((item) => (
+              <div
+                key={item.q}
+                style={{
+                  background: cardBg,
+                  border,
+                  borderRadius: radius,
+                  padding: "24px 28px",
+                }}
+              >
+                <h3
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "1rem",
+                    marginBottom: "12px",
+                  }}
+                >
+                  {item.q}
+                </h3>
+                <p
+                  style={{
+                    color: muted,
+                    fontSize: "0.9375rem",
+                    lineHeight: 1.7,
+                    margin: 0,
+                  }}
+                >
+                  {item.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Final CTA ──────────────────────────────────────────────────── */}
+      <section
+        style={{
+          background: bg,
+          padding: "100px 24px",
+          textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(ellipse 70% 60% at 50% 110%, rgba(244,114,182,0.1) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          style={{
+            maxWidth: "680px",
+            margin: "0 auto",
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontWeight: 800,
+              marginBottom: "20px",
+              lineHeight: 1.15,
+            }}
+          >
+            Stop the back-and-forth.
+            <br />
+            <span style={{ color: accent }}>Start booking smarter.</span>
+          </h2>
+          <p
+            style={{
+              color: muted,
+              fontSize: "1.125rem",
+              marginBottom: "40px",
+              lineHeight: 1.6,
+            }}
+          >
+            Join service businesses that have put their scheduling on autopilot.
+            14-day free trial — no credit card required.
+          </p>
+          <Link
+            href="https://app.ziggyschedule.com/signup"
+            style={{
+              display: "inline-block",
+              background: accent,
+              color: "#0a0a0a",
+              padding: "16px 40px",
+              borderRadius: "50px",
+              fontWeight: 700,
+              fontSize: "1.125rem",
+              textDecoration: "none",
+            }}
+          >
+            Start Your Free Trial
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

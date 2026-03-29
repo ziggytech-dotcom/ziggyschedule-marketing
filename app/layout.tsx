@@ -13,11 +13,11 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "ZiggySchedule — Let Clients Book Themselves",
+    default: "ZiggySchedule — Online Scheduling Software for Service Businesses",
     template: "%s | ZiggySchedule",
   },
   description:
-    "Stop the back-and-forth. ZiggySchedule is online booking software for service businesses. Share your link, clients pick a time. $19/mo.",
+    "The scheduling tool that works as hard as you do. Unlimited bookings, intake forms, team scheduling, and paid bookings. Starting at $15/mo. 14-day free trial.",
   keywords: [
     "online scheduling",
     "booking software",

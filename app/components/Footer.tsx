@@ -1,33 +1,103 @@
 import Link from "next/link";
 
+const accent = "#f472b6";
+const muted = "#a1a1aa";
+
 export default function Footer() {
   return (
-    <footer style={{ borderTop: "1px solid #27272a", backgroundColor: "#0f0a0a" }} className="py-12 mt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+    <footer
+      style={{
+        borderTop: "1px solid #1f1f1f",
+        background: "#0a0a0a",
+        padding: "56px 24px 32px",
+      }}
+    >
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+            gap: "40px",
+            marginBottom: "48px",
+          }}
+        >
           {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <div className="text-xl font-bold mb-3">
+          <div style={{ gridColumn: "span 2" }}>
+            <div
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: 800,
+                marginBottom: "12px",
+              }}
+            >
               <span style={{ color: "#ff1744" }}>Ziggy</span>
-              <span style={{ color: "#f472b6" }}>Schedule</span>
+              <span style={{ color: accent }}>Schedule</span>
             </div>
-            <p className="text-sm" style={{ color: "#a1a1aa" }}>
-              Let clients book themselves. Online scheduling for service businesses.
+            <p
+              style={{
+                color: muted,
+                fontSize: "0.875rem",
+                lineHeight: 1.65,
+                maxWidth: "240px",
+                marginBottom: "14px",
+              }}
+            >
+              The scheduling tool that works as hard as you do. Online booking
+              for service businesses.
             </p>
+            <a
+              href="https://ziggybusiness.com"
+              style={{
+                color: muted,
+                fontSize: "0.8rem",
+                textDecoration: "none",
+                borderBottom: "1px solid #2a2a2a",
+                paddingBottom: "2px",
+              }}
+            >
+              Part of the ZiggyTech Business Suite
+            </a>
           </div>
 
-          {/* Product */}
+          {/* Navigation */}
           <div>
-            <h4 className="text-sm font-semibold mb-3">Product</h4>
-            <ul className="space-y-2">
+            <h4
+              style={{
+                fontWeight: 700,
+                fontSize: "0.8125rem",
+                letterSpacing: "0.06em",
+                color: muted,
+                marginBottom: "16px",
+                textTransform: "uppercase",
+              }}
+            >
+              Product
+            </h4>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+              }}
+            >
               {[
+                { label: "Home", href: "/" },
                 { label: "Features", href: "/features" },
                 { label: "Pricing", href: "/pricing" },
-                { label: "Salons", href: "/salons" },
-                { label: "Gyms", href: "/gyms" },
+                { label: "Blog", href: "/blog" },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-sm hover:text-white transition-colors" style={{ color: "#a1a1aa" }}>
+                  <Link
+                    href={item.href}
+                    style={{
+                      color: muted,
+                      textDecoration: "none",
+                      fontSize: "0.9rem",
+                    }}
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -35,18 +105,43 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Use Cases */}
+          {/* Compare */}
           <div>
-            <h4 className="text-sm font-semibold mb-3">Use Cases</h4>
-            <ul className="space-y-2">
+            <h4
+              style={{
+                fontWeight: 700,
+                fontSize: "0.8125rem",
+                letterSpacing: "0.06em",
+                color: muted,
+                marginBottom: "16px",
+                textTransform: "uppercase",
+              }}
+            >
+              Compare
+            </h4>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+              }}
+            >
               {[
-                { label: "Coaches", href: "/coaches" },
-                { label: "Consultants", href: "/consultants" },
                 { label: "vs Calendly", href: "/vs/calendly" },
                 { label: "vs Acuity", href: "/vs/acuity" },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-sm hover:text-white transition-colors" style={{ color: "#a1a1aa" }}>
+                  <Link
+                    href={item.href}
+                    style={{
+                      color: muted,
+                      textDecoration: "none",
+                      fontSize: "0.9rem",
+                    }}
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -54,16 +149,51 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Account & Legal */}
           <div>
-            <h4 className="text-sm font-semibold mb-3">Legal</h4>
-            <ul className="space-y-2">
+            <h4
+              style={{
+                fontWeight: 700,
+                fontSize: "0.8125rem",
+                letterSpacing: "0.06em",
+                color: muted,
+                marginBottom: "16px",
+                textTransform: "uppercase",
+              }}
+            >
+              Account
+            </h4>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+              }}
+            >
               {[
+                {
+                  label: "Sign In",
+                  href: "https://app.ziggyschedule.com/login",
+                },
+                {
+                  label: "Start Free Trial",
+                  href: "https://app.ziggyschedule.com/signup",
+                },
                 { label: "Privacy Policy", href: "/privacy" },
                 { label: "Terms of Service", href: "/terms" },
               ].map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="text-sm hover:text-white transition-colors" style={{ color: "#a1a1aa" }}>
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    style={{
+                      color: muted,
+                      textDecoration: "none",
+                      fontSize: "0.9rem",
+                    }}
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -72,12 +202,22 @@ export default function Footer() {
           </div>
         </div>
 
-        <div style={{ borderTop: "1px solid #27272a" }} className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm" style={{ color: "#a1a1aa" }}>
+        <div
+          style={{
+            borderTop: "1px solid #1f1f1f",
+            paddingTop: "24px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "12px",
+          }}
+        >
+          <p style={{ color: muted, fontSize: "0.8125rem", margin: 0 }}>
             © {new Date().getFullYear()} ZiggySchedule. All rights reserved.
           </p>
-          <p className="text-sm" style={{ color: "#a1a1aa" }}>
-            Made for service businesses that are tired of back-and-forth emails.
+          <p style={{ color: muted, fontSize: "0.8125rem", margin: 0 }}>
+            Made for service businesses tired of back-and-forth emails.
           </p>
         </div>
       </div>

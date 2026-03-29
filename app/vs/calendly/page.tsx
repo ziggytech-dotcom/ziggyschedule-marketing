@@ -1,139 +1,396 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import CTABanner from "../../components/CTABanner";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "ZiggySchedule vs Calendly — Same Price, More Features for Service Businesses",
+  title: "ZiggySchedule vs Calendly — Which Is Better for Service Businesses?",
   description:
-    "ZiggySchedule vs Calendly comparison. Both $19/mo. ZiggySchedule has cancellation policies, package bookings, waitlists, and more features built for service businesses.",
+    "ZiggySchedule vs Calendly: full feature comparison. Team scheduling at $35/mo vs Calendly's $120–$160. See which scheduling tool is right for your service business.",
+  keywords: [
+    "ZiggySchedule vs Calendly",
+    "Calendly alternative",
+    "Calendly for service businesses",
+    "Calendly vs booking software",
+    "cheap Calendly alternative",
+  ],
   openGraph: {
-    title: "ZiggySchedule vs Calendly — $19/mo, More Features for Service Businesses",
-    description: "Same price as Calendly. More features for coaches, salons, gyms, and consultants. See the full comparison.",
+    title: "ZiggySchedule vs Calendly — Team scheduling at $35 vs $160",
+    description:
+      "Full feature comparison. ZiggySchedule gives you team scheduling, group classes, and paid bookings from day one — at $35/mo for 10 people vs Calendly's $160.",
     url: "https://ziggyschedule.com/vs/calendly",
   },
 };
 
-const rows = [
-  { feature: "Monthly price", ziggy: "$19/mo", calendly: "$20/mo (Pro)", winner: "ziggy" },
-  { feature: "Booking page", ziggy: "✅", calendly: "✅", winner: "tie" },
-  { feature: "Calendar embed", ziggy: "✅", calendly: "✅", winner: "tie" },
-  { feature: "Timezone auto-detection", ziggy: "✅", calendly: "✅", winner: "tie" },
-  { feature: "Google & Outlook sync", ziggy: "✅", calendly: "✅", winner: "tie" },
-  { feature: "Email reminders", ziggy: "✅", calendly: "✅", winner: "tie" },
-  { feature: "Cancellation policy", ziggy: "✅ All plans", calendly: "❌ Teams only ($16/user/mo)", winner: "ziggy" },
-  { feature: "Package bookings", ziggy: "✅", calendly: "❌ Not available", winner: "ziggy" },
-  { feature: "Group events / classes", ziggy: "✅", calendly: "✅ Teams only", winner: "ziggy" },
-  { feature: "Waitlists", ziggy: "✅", calendly: "❌", winner: "ziggy" },
-  { feature: "Online payments (Stripe)", ziggy: "✅", calendly: "✅ (Standard+)", winner: "tie" },
-  { feature: "Recurring appointments", ziggy: "✅", calendly: "❌", winner: "ziggy" },
-  { feature: "Multiple locations", ziggy: "✅", calendly: "❌", winner: "ziggy" },
-  { feature: "Built for service businesses", ziggy: "✅", calendly: "❌ (corporate/SaaS focus)", winner: "ziggy" },
-];
+const accent = "#f472b6";
+const bg = "#0a0a0a";
+const cardBg = "#111111";
+const border = "1px solid #1f1f1f";
+const radius = "14px";
+const muted = "#a1a1aa";
 
 export default function VsCalendlyPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 text-center">
-        <div
-          className="inline-block text-xs px-3 py-1 rounded-full mb-6"
-          style={{ backgroundColor: "#18181b", color: "#f472b6", border: "1px solid #f472b6" }}
-        >
-          COMPARISON
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-          ZiggySchedule vs Calendly
-        </h1>
-        <p className="text-xl max-w-2xl mx-auto mb-8" style={{ color: "#a1a1aa" }}>
-          Same price. Same professional look. But ZiggySchedule is built for service businesses — not just corporate meeting scheduling.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="https://app.ziggyschedule.com"
-            className="px-8 py-3 rounded-full font-semibold transition-all hover:opacity-90"
-            style={{ backgroundColor: "#f472b6", color: "#0f0a0a" }}
-          >
-            Try ZiggySchedule Free
-          </Link>
-          <span className="text-sm" style={{ color: "#a1a1aa" }}>
-            14-day trial • No credit card
-          </span>
-        </div>
-      </section>
+      <Script
+        id="json-ld-vs-calendly"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "ZiggySchedule",
+            applicationCategory: "BusinessApplication",
+            offers: {
+              "@type": "Offer",
+              price: "15",
+              priceCurrency: "USD",
+            },
+          }),
+        }}
+      />
 
-      {/* The core argument */}
-      <section className="py-12 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-6 text-center">
-          {[
-            {
-              stat: "$19/mo",
-              label: "ZiggySchedule",
-              sub: "All features included",
-              highlight: true,
-            },
-            {
-              stat: "$20/mo",
-              label: "Calendly Pro",
-              sub: "Basic features only",
-              highlight: false,
-            },
-            {
-              stat: "$16+/user",
-              label: "Calendly Teams",
-              sub: "To get cancellation policies",
-              highlight: false,
-            },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="rounded-2xl p-6"
+      {/* ── Hero ─────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          background: bg,
+          padding: "88px 24px 72px",
+          textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(244,114,182,0.1) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+        <div
+          style={{
+            maxWidth: "820px",
+            margin: "0 auto",
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          <div
+            style={{
+              display: "inline-block",
+              background: cardBg,
+              border,
+              borderRadius: "50px",
+              padding: "6px 16px",
+              fontSize: "0.8125rem",
+              color: muted,
+              marginBottom: "24px",
+            }}
+          >
+            ZiggySchedule vs Calendly — 2024 Comparison
+          </div>
+          <h1
+            style={{
+              fontSize: "clamp(2.2rem, 5.5vw, 4rem)",
+              fontWeight: 800,
+              lineHeight: 1.1,
+              marginBottom: "24px",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            <span style={{ color: accent }}>ZiggySchedule</span> vs Calendly
+            <br />
+            Which is right for your business?
+          </h1>
+          <p
+            style={{
+              fontSize: "1.15rem",
+              color: muted,
+              maxWidth: "620px",
+              margin: "0 auto 40px",
+              lineHeight: 1.65,
+            }}
+          >
+            Calendly is great for individual booking links. The moment you have
+            a team, it gets expensive fast. ZiggySchedule gives you team
+            scheduling, group classes, and paid bookings from day one —{" "}
+            <strong style={{ color: "#fff" }}>
+              at $35/mo for 10 people vs Calendly&apos;s $160.
+            </strong>
+          </p>
+          <div
+            style={{
+              display: "flex",
+              gap: "16px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Link
+              href="https://app.ziggyschedule.com/signup"
               style={{
-                backgroundColor: "#18181b",
-                border: item.highlight ? "2px solid #f472b6" : "1px solid #27272a",
-                boxShadow: item.highlight ? "0 0 40px rgba(244,114,182,0.15)" : "none",
+                background: accent,
+                color: "#0a0a0a",
+                padding: "14px 32px",
+                borderRadius: "50px",
+                fontWeight: 700,
+                fontSize: "1rem",
+                textDecoration: "none",
+                display: "inline-block",
               }}
             >
-              <div className="text-4xl font-bold mb-2" style={{ color: item.highlight ? "#f472b6" : "white" }}>
-                {item.stat}
-              </div>
-              <div className="font-semibold mb-1">{item.label}</div>
-              <div className="text-sm" style={{ color: "#a1a1aa" }}>{item.sub}</div>
-            </div>
-          ))}
+              Try ZiggySchedule Free
+            </Link>
+            <Link
+              href="#comparison"
+              style={{
+                background: "transparent",
+                color: "#fff",
+                padding: "14px 32px",
+                borderRadius: "50px",
+                fontWeight: 600,
+                fontSize: "1rem",
+                textDecoration: "none",
+                display: "inline-block",
+                border: "1px solid #2a2a2a",
+              }}
+            >
+              See Full Comparison
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Comparison Table */}
-      <section className="py-12 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8">
+      {/* ── Price Shock ──────────────────────────────────────────────── */}
+      <section
+        style={{
+          background: "#0d0d0d",
+          padding: "72px 24px",
+          borderTop: "1px solid #1a1a1a",
+          borderBottom: "1px solid #1a1a1a",
+        }}
+      >
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <h2
+            style={{
+              textAlign: "center",
+              fontSize: "2rem",
+              fontWeight: 800,
+              marginBottom: "48px",
+            }}
+          >
+            The price difference is jaw-dropping
+          </h2>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "24px",
+            }}
+          >
+            <div
+              style={{
+                background: cardBg,
+                border: `2px solid ${accent}`,
+                borderRadius: radius,
+                padding: "36px 28px",
+                textAlign: "center",
+                boxShadow: "0 0 40px rgba(244,114,182,0.12)",
+              }}
+            >
+              <div
+                style={{
+                  color: accent,
+                  fontWeight: 700,
+                  fontSize: "0.85rem",
+                  letterSpacing: "0.06em",
+                  marginBottom: "12px",
+                }}
+              >
+                ZIGGYSCHEDULE
+              </div>
+              <div
+                style={{ fontSize: "4rem", fontWeight: 800, lineHeight: 1 }}
+              >
+                $35
+              </div>
+              <div style={{ color: muted, fontSize: "0.9rem", marginTop: "6px" }}>
+                /mo for 10 users
+              </div>
+              <div
+                style={{
+                  color: accent,
+                  fontSize: "0.875rem",
+                  marginTop: "16px",
+                  fontWeight: 600,
+                }}
+              >
+                Team scheduling included
+              </div>
+            </div>
+            <div
+              style={{
+                background: cardBg,
+                border,
+                borderRadius: radius,
+                padding: "36px 28px",
+                textAlign: "center",
+                opacity: 0.7,
+              }}
+            >
+              <div
+                style={{
+                  color: muted,
+                  fontWeight: 700,
+                  fontSize: "0.85rem",
+                  letterSpacing: "0.06em",
+                  marginBottom: "12px",
+                }}
+              >
+                CALENDLY
+              </div>
+              <div
+                style={{
+                  fontSize: "4rem",
+                  fontWeight: 800,
+                  lineHeight: 1,
+                  color: muted,
+                }}
+              >
+                $160
+              </div>
+              <div style={{ color: muted, fontSize: "0.9rem", marginTop: "6px" }}>
+                /mo for 10 users ($16/user)
+              </div>
+              <div
+                style={{
+                  color: muted,
+                  fontSize: "0.875rem",
+                  marginTop: "16px",
+                }}
+              >
+                Team scheduling on Teams plan only
+              </div>
+            </div>
+          </div>
+          <p
+            style={{
+              textAlign: "center",
+              color: muted,
+              marginTop: "32px",
+              fontSize: "0.9375rem",
+            }}
+          >
+            That&apos;s{" "}
+            <strong style={{ color: "#fff" }}>$1,500/year saved</strong> just
+            by switching from Calendly to ZiggySchedule for a 10-person team.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Full Comparison Table ────────────────────────────────────── */}
+      <section
+        id="comparison"
+        style={{ background: bg, padding: "88px 24px" }}
+      >
+        <div style={{ maxWidth: "920px", margin: "0 auto" }}>
+          <h2
+            style={{
+              textAlign: "center",
+              fontSize: "2.25rem",
+              fontWeight: 800,
+              marginBottom: "48px",
+            }}
+          >
             Feature-by-feature comparison
           </h2>
-          <div className="overflow-x-auto rounded-2xl" style={{ border: "1px solid #27272a" }}>
-            <table className="w-full">
+          <div style={{ overflowX: "auto" }}>
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                fontSize: "0.9375rem",
+              }}
+            >
               <thead>
-                <tr style={{ borderBottom: "1px solid #27272a", backgroundColor: "#18181b" }}>
-                  <th className="text-left py-4 px-6 text-sm font-semibold">Feature</th>
-                  <th className="py-4 px-6 text-center text-sm font-bold" style={{ color: "#f472b6" }}>
+                <tr style={{ borderBottom: "1px solid #1f1f1f" }}>
+                  <th
+                    style={{
+                      textAlign: "left",
+                      padding: "14px 16px",
+                      color: muted,
+                      fontWeight: 600,
+                    }}
+                  >
+                    Feature
+                  </th>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      padding: "14px 16px",
+                      color: accent,
+                      fontWeight: 700,
+                    }}
+                  >
                     ZiggySchedule
                   </th>
-                  <th className="py-4 px-6 text-center text-sm font-semibold" style={{ color: "#a1a1aa" }}>
+                  <th
+                    style={{
+                      textAlign: "center",
+                      padding: "14px 16px",
+                      color: muted,
+                      fontWeight: 600,
+                    }}
+                  >
                     Calendly
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {rows.map((row, i) => (
+                {[
+                  ["Starting price (solo)", "$15/mo", "$12/user/mo (Standard)"],
+                  ["10-user team cost", "$35/mo", "$120–$160/mo"],
+                  ["Unlimited booking pages", "✅", "✅"],
+                  ["Custom intake forms per service", "✅ All plans", "❌ Teams only"],
+                  ["Group events & classes", "✅ All plans", "✅ Teams only"],
+                  ["Round-robin team scheduling", "✅ Team+", "✅ Teams only"],
+                  ["Paid bookings via Stripe", "✅ Business plan", "✅ Pro+ only"],
+                  ["SMS reminders", "✅ BYOK Twilio (Team+)", "❌ Not available"],
+                  ["Buffer times between bookings", "✅", "✅"],
+                  ["Blackout dates", "✅", "✅"],
+                  ["Resource management", "✅ Business", "❌"],
+                  ["Full analytics", "✅ Business", "❌ Teams only"],
+                  ["Priority support", "✅ Business", "❌"],
+                  ["Built for service businesses", "✅ Purpose-built", "❌ Corporate focus"],
+                ].map(([feature, us, them], i) => (
                   <tr
-                    key={row.feature}
-                    style={{ borderBottom: "1px solid #27272a", backgroundColor: i % 2 === 0 ? "transparent" : "rgba(24,24,27,0.4)" }}
+                    key={feature}
+                    style={{
+                      borderBottom: "1px solid #1a1a1a",
+                      background:
+                        i % 2 === 0 ? "transparent" : "rgba(17,17,17,0.6)",
+                    }}
                   >
-                    <td className="py-3 px-6 text-sm">{row.feature}</td>
-                    <td className="py-3 px-6 text-center text-sm font-medium" style={{ color: "#f472b6" }}>
-                      {row.ziggy}
+                    <td style={{ padding: "12px 16px" }}>{feature}</td>
+                    <td
+                      style={{
+                        padding: "12px 16px",
+                        textAlign: "center",
+                        color: accent,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {us}
                     </td>
-                    <td className="py-3 px-6 text-center text-sm" style={{ color: row.winner === "ziggy" ? "#a1a1aa" : "white" }}>
-                      {row.calendly}
+                    <td
+                      style={{
+                        padding: "12px 16px",
+                        textAlign: "center",
+                        color: muted,
+                      }}
+                    >
+                      {them}
                     </td>
                   </tr>
                 ))}
@@ -143,49 +400,283 @@ export default function VsCalendlyPage() {
         </div>
       </section>
 
-      {/* Key differentiators */}
-      <section className="py-12 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">
-            Why service businesses choose ZiggySchedule over Calendly
+      {/* ── Where Calendly Falls Short ───────────────────────────────── */}
+      <section
+        style={{
+          background: "#0d0d0d",
+          padding: "72px 24px",
+          borderTop: "1px solid #1a1a1a",
+        }}
+      >
+        <div style={{ maxWidth: "960px", margin: "0 auto" }}>
+          <h2
+            style={{
+              textAlign: "center",
+              fontSize: "2rem",
+              fontWeight: 800,
+              marginBottom: "48px",
+            }}
+          >
+            Where Calendly falls short for service businesses
           </h2>
-          <p className="text-center mb-10" style={{ color: "#a1a1aa" }}>
-            Calendly is great for scheduling meetings. But it wasn&apos;t built for service businesses that sell their time as a product.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6">
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "24px",
+            }}
+          >
             {[
               {
-                title: "Cancellation policies that actually work",
-                desc: "With Calendly, you need a $16/user/month Teams plan to get cancellation policy enforcement. With ZiggySchedule, it's included in your $19/mo. Set your policy once, stop losing money to no-shows.",
+                icon: "💰",
+                title: "Team pricing is brutal",
+                desc: "Calendly charges per user on every plan. 10 staff members = $120–$160/mo. ZiggySchedule covers 10 users for $35.",
               },
               {
-                title: "Package bookings (Calendly doesn't have this)",
-                desc: "Want to sell a 10-session coaching package? You can't do it in Calendly. ZiggySchedule lets you sell packages, track session credits, and let clients book from their balance automatically.",
+                icon: "📝",
+                title: "No intake forms on lower plans",
+                desc: "Custom intake forms — essential for salons, therapists, coaches — are locked behind Calendly's Teams plan.",
               },
               {
-                title: "Waitlists for group classes",
-                desc: "If you run group sessions, Calendly can't manage a waitlist. ZiggySchedule automatically fills cancelled spots from the waitlist and notifies the next person in line.",
-              },
-              {
-                title: "Built for your kind of business",
-                desc: "Calendly is designed for SaaS companies scheduling product demos. ZiggySchedule is built for coaches, salons, gyms, consultants, and anyone who sells their time.",
+                icon: "💬",
+                title: "No SMS reminders at all",
+                desc: "Calendly doesn't offer SMS reminders on any plan. ZiggySchedule supports Twilio BYOK SMS on Team and Business.",
               },
             ].map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl p-6"
-                style={{ backgroundColor: "#18181b", border: "1px solid #27272a" }}
+                style={{
+                  background: cardBg,
+                  border,
+                  borderRadius: radius,
+                  padding: "28px 24px",
+                }}
               >
-                <h3 className="font-bold mb-3" style={{ color: "#f472b6" }}>✓ {item.title}</h3>
-                <p className="text-sm" style={{ color: "#a1a1aa" }}>{item.desc}</p>
+                <div style={{ fontSize: "2rem", marginBottom: "14px" }}>
+                  {item.icon}
+                </div>
+                <h3
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "1.05rem",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p
+                  style={{
+                    color: muted,
+                    fontSize: "0.9375rem",
+                    lineHeight: 1.65,
+                    margin: 0,
+                  }}
+                >
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <CTABanner />
+      {/* ── Bottom Line ──────────────────────────────────────────────── */}
+      <section
+        style={{
+          background: bg,
+          padding: "72px 24px",
+          borderTop: "1px solid #1a1a1a",
+        }}
+      >
+        <div style={{ maxWidth: "760px", margin: "0 auto" }}>
+          <div
+            style={{
+              background: cardBg,
+              border: `2px solid ${accent}`,
+              borderRadius: radius,
+              padding: "40px 36px",
+              textAlign: "center",
+              boxShadow: "0 0 48px rgba(244,114,182,0.12)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "2rem",
+                marginBottom: "16px",
+              }}
+            >
+              🏆
+            </div>
+            <h2
+              style={{
+                fontSize: "1.75rem",
+                fontWeight: 800,
+                marginBottom: "20px",
+                lineHeight: 1.25,
+              }}
+            >
+              The bottom line
+            </h2>
+            <p
+              style={{
+                color: muted,
+                fontSize: "1.0625rem",
+                lineHeight: 1.7,
+                marginBottom: "32px",
+              }}
+            >
+              Calendly is great for individual booking links. The moment you
+              have a team, it gets expensive fast. ZiggySchedule gives you team
+              scheduling, group classes, and paid bookings from day one —{" "}
+              <strong style={{ color: "#fff" }}>
+                at $35/mo for 10 people vs Calendly&apos;s $160.
+              </strong>
+            </p>
+            <Link
+              href="https://app.ziggyschedule.com/signup"
+              style={{
+                display: "inline-block",
+                background: accent,
+                color: "#0a0a0a",
+                padding: "14px 36px",
+                borderRadius: "50px",
+                fontWeight: 700,
+                fontSize: "1rem",
+                textDecoration: "none",
+              }}
+            >
+              Switch to ZiggySchedule — Free for 14 Days
+            </Link>
+            <div
+              style={{
+                color: muted,
+                fontSize: "0.8125rem",
+                marginTop: "12px",
+              }}
+            >
+              No credit card required. Cancel anytime.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ──────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          background: "#0d0d0d",
+          padding: "80px 24px",
+          borderTop: "1px solid #1a1a1a",
+        }}
+      >
+        <div style={{ maxWidth: "760px", margin: "0 auto" }}>
+          <h2
+            style={{
+              textAlign: "center",
+              fontSize: "2rem",
+              fontWeight: 800,
+              marginBottom: "48px",
+            }}
+          >
+            Common questions about switching
+          </h2>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+          >
+            {[
+              {
+                q: "Can I import my Calendly bookings into ZiggySchedule?",
+                a: "You can set up your ZiggySchedule account and start taking new bookings within minutes. Any existing scheduled meetings in Calendly can stay until they complete — then make the full switch.",
+              },
+              {
+                q: "Will my clients notice the difference?",
+                a: "They'll notice it's better — cleaner booking pages, intake forms before appointments, and text reminders if you want them. The booking experience is mobile-first and frictionless.",
+              },
+              {
+                q: "Is ZiggySchedule really cheaper than Calendly for teams?",
+                a: "Yes. Calendly charges $12–$16/user/mo. For 10 users, that's $120–$160/mo. ZiggySchedule's Team plan is $35/mo for up to 10 users — all team features included.",
+              },
+              {
+                q: "Does ZiggySchedule have a free plan?",
+                a: "We offer a 14-day free trial on any paid plan, no credit card required. Paid plans start at $15/mo for solo practitioners.",
+              },
+            ].map((item) => (
+              <div
+                key={item.q}
+                style={{
+                  background: cardBg,
+                  border,
+                  borderRadius: radius,
+                  padding: "24px 28px",
+                }}
+              >
+                <h3
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "1rem",
+                    marginBottom: "12px",
+                  }}
+                >
+                  {item.q}
+                </h3>
+                <p
+                  style={{
+                    color: muted,
+                    fontSize: "0.9375rem",
+                    lineHeight: 1.7,
+                    margin: 0,
+                  }}
+                >
+                  {item.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Final CTA ────────────────────────────────────────────────── */}
+      <section
+        style={{ background: bg, padding: "96px 24px", textAlign: "center" }}
+      >
+        <div style={{ maxWidth: "620px", margin: "0 auto" }}>
+          <h2
+            style={{
+              fontSize: "clamp(1.9rem, 4.5vw, 3rem)",
+              fontWeight: 800,
+              marginBottom: "20px",
+              lineHeight: 1.2,
+            }}
+          >
+            Ready to ditch Calendly&apos;s team tax?
+          </h2>
+          <p
+            style={{
+              color: muted,
+              fontSize: "1.0625rem",
+              marginBottom: "36px",
+              lineHeight: 1.65,
+            }}
+          >
+            Start your free 14-day trial. No credit card. Full team features on
+            day one.
+          </p>
+          <Link
+            href="https://app.ziggyschedule.com/signup"
+            style={{
+              display: "inline-block",
+              background: accent,
+              color: "#0a0a0a",
+              padding: "15px 36px",
+              borderRadius: "50px",
+              fontWeight: 700,
+              fontSize: "1.0625rem",
+              textDecoration: "none",
+            }}
+          >
+            Start Free Trial
+          </Link>
+        </div>
+      </section>
     </>
   );
 }
