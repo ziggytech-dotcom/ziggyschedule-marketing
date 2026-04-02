@@ -3,12 +3,12 @@ import Link from "next/link";
 import CTABanner from "../components/CTABanner";
 
 export const metadata: Metadata = {
-  title: "Pricing — $19/mo Online Booking Software",
+  title: "Pricing — $35/mo Online Booking Software",
   description:
-    "ZiggySchedule is $19/mo. All features included — booking page, calendar embed, timezone detection, cancellation policy, packages, group events. 14-day free trial.",
+    "ZiggySchedule is $35/mo. All features included — booking page, calendar embed, timezone detection, cancellation policy, packages, group events. 14-day free trial.",
   openGraph: {
-    title: "ZiggySchedule Pricing — $19/mo, All Features Included",
-    description: "One plan. $19/mo. 14-day free trial. No credit card required.",
+    title: "ZiggySchedule Pricing — $35/mo, All Features Included",
+    description: "One plan. $35/mo. 14-day free trial. No credit card required.",
     url: "https://ziggyschedule.com/pricing",
   },
 };
@@ -59,7 +59,7 @@ const faqs = [
   },
   {
     q: "Is there a free plan?",
-    a: "No free plan — we're $19/mo. But you get a 14-day trial with no credit card. We'd rather give you the real product to evaluate than a crippled free tier.",
+    a: "No free plan — we're $35/mo. But you get a 14-day trial with no credit card. We'd rather give you the real product to evaluate than a crippled free tier.",
   },
   {
     q: "What payment processors do you support?",
@@ -105,11 +105,11 @@ export default function PricingPage() {
                 EVERYTHING INCLUDED
               </div>
               <div className="flex items-end justify-center gap-2 mb-2">
-                <span className="text-7xl font-bold">$19</span>
+                <span className="text-7xl font-bold">$35</span>
                 <span className="text-xl mb-2" style={{ color: "#a1a1aa" }}>/mo</span>
               </div>
               <p style={{ color: "#a1a1aa" }}>
-                Same price as Calendly Pro. Way more for service businesses.
+                Way less than Acuity ($20/mo) or HoneyBook. Way more for service businesses.
               </p>
             </div>
 
