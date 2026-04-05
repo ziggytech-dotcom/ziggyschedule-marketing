@@ -1,181 +1,132 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import CTABanner from "../components/CTABanner";
+'use client'
+import { useState } from 'react'
+import Link from 'next/link'
+import { MarketingNav } from '@/app/components/Nav'
+import { MarketingFooter } from '@/app/components/Footer'
 
-export const metadata: Metadata = {
-  title: "Pricing — $35/mo Online Booking Software",
-  description:
-    "ZiggySchedule is $35/mo. All features included — booking page, calendar embed, timezone detection, cancellation policy, packages, group events. 14-day free trial.",
-  openGraph: {
-    title: "ZiggySchedule Pricing — $35/mo, All Features Included",
-    description: "One plan. $35/mo. 14-day free trial. No credit card required.",
-    url: "https://ziggyschedule.com/pricing",
-  },
-};
-
-const included = [
-  "Booking page (your own URL)",
-  "Calendar embed widget",
-  "Timezone auto-detection",
-  "Cancellation policy enforcement",
-  "Package bookings",
-  "Group events & classes",
-  "Waitlists",
-  "Online payments (Stripe)",
-  "Email confirmations & reminders",
-  "Custom branding",
-  "Google & Outlook sync",
-  "Recurring appointments",
-  "Multiple services",
-  "Blackout dates",
-  "Revenue reporting",
-  "Mobile-optimized booking",
-];
-
+const starterFeatures = [
+  `1 user`,
+  `Unlimited bookings`,
+  `Intake forms`,
+  `Basic appointment types`,
+  `Email confirmations`,
+  `Google Calendar sync`,
+  `Embeddable widget`,
+  `Email support`,
+]
+const proFeatures = [
+  `Everything in Starter`,
+  `10 users included`,
+  `Team scheduling (round-robin)`,
+  `SMS reminders (Twilio)`,
+  `Stripe payments`,
+  `Collective availability`,
+  `Custom branding`,
+  `Advanced analytics`,
+  `Priority support`,
+  `API access`,
+]
+const compRows = [
+  { feature: `Users included`, starter: `1 user`, pro: `10 users` },
+  { feature: `Additional users`, starter: `$8/user/mo`, pro: `$6/user/mo` },
+  { feature: `Unlimited bookings`, starter: true, pro: true },
+  { feature: `Intake forms`, starter: true, pro: true },
+  { feature: `Google Calendar sync`, starter: true, pro: true },
+  { feature: `Email confirmations`, starter: true, pro: true },
+  { feature: `Team scheduling`, starter: false, pro: true },
+  { feature: `SMS reminders (Twilio)`, starter: false, pro: true },
+  { feature: `Stripe payments`, starter: false, pro: true },
+  { feature: `Round-robin routing`, starter: false, pro: true },
+  { feature: `Custom branding`, starter: false, pro: true },
+  { feature: `Priority support`, starter: false, pro: true },
+]
 const faqs = [
-  {
-    q: "Does ZiggySchedule enforce cancellation policies automatically?",
-    a: "Yes. You set your cancellation window (e.g., 24 hours) and your no-show fee. If a client cancels within the window, they're automatically charged the fee via the payment method on file. You don't have to chase anyone.",
-  },
-  {
-    q: "How does the calendar embed work?",
-    a: "Copy one line of JavaScript code from your ZiggySchedule dashboard and paste it anywhere on your website. Your full booking calendar appears inline — not a popup, not a redirect. It works with Squarespace, Wix, WordPress, Webflow, and any HTML site.",
-  },
-  {
-    q: "How does timezone detection work?",
-    a: "When a client opens your booking page, ZiggySchedule automatically detects their timezone from their browser. They see available times in their local timezone. Your calendar shows the same times in your timezone. Confirmations are sent in both timezones.",
-  },
-  {
-    q: "Can I run group classes or events?",
-    a: "Absolutely. Create a group event with a seat limit. Clients book individual spots. When the class is full, a waitlist opens automatically. Great for yoga classes, workshops, webinars, group coaching, and anything with a fixed number of attendees.",
-  },
-  {
-    q: "What are package bookings?",
-    a: "You create a package (e.g., '5 coaching sessions — $400'). The client pays upfront and receives a credit for 5 sessions. They can book individual sessions from their package balance at any time. Perfect for coaching, personal training, and tutoring.",
-  },
-  {
-    q: "Can I try before I buy?",
-    a: "Yes. 14-day free trial, no credit card required. You get full access to every feature. If you decide ZiggySchedule isn't for you, just don't add a payment method. No awkward cancellation flow.",
-  },
-  {
-    q: "Is there a free plan?",
-    a: "No free plan — we're $35/mo. But you get a 14-day trial with no credit card. We'd rather give you the real product to evaluate than a crippled free tier.",
-  },
-  {
-    q: "What payment processors do you support?",
-    a: "Stripe. When you connect your Stripe account, clients can pay with any major credit or debit card at booking.",
-  },
-];
+  { q: `Can clients reschedule and cancel on their own?`, a: `Yes. Every confirmation email includes a reschedule and cancel link. You can set minimum notice periods and choose whether rescheduled slots open back up automatically.` },
+  { q: `How does team scheduling work?`, a: `Pro plan includes team scheduling with round-robin assignment. When a client books, ZiggySchedule automatically assigns the next available team member.` },
+  { q: `Can I charge clients at booking?`, a: `Yes. Connect your Stripe account and collect payment at booking — full payment, a deposit, or leave payment optional.` },
+  { q: `Can I embed the booking widget on my website?`, a: `Yes. Every booking page can be embedded as an iframe on any website or landing page. The widget is fully responsive.` },
+]
 
 export default function PricingPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
   return (
-    <>
-      {/* Hero */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 text-center">
-        <div
-          className="inline-block text-xs px-3 py-1 rounded-full mb-6"
-          style={{ backgroundColor: "#18181b", color: "#f472b6", border: "1px solid #f472b6" }}
-        >
-          PRICING
-        </div>
-        <h1 className="text-5xl sm:text-6xl font-bold mb-4">
-          Simple, honest pricing.
-        </h1>
-        <p className="text-xl mb-4" style={{ color: "#a1a1aa" }}>
-          One plan. Everything included. No gotchas.
-        </p>
-        <p className="text-sm" style={{ color: "#a1a1aa" }}>
-          14-day free trial • No credit card required • Cancel anytime
-        </p>
-      </section>
-
-      {/* Pricing card */}
-      <section className="py-8 px-4 sm:px-6">
-        <div className="max-w-lg mx-auto">
-          <div
-            className="rounded-2xl p-8"
-            style={{
-              backgroundColor: "#18181b",
-              border: "2px solid #f472b6",
-              boxShadow: "0 0 80px rgba(244,114,182,0.15)",
-            }}
-          >
-            <div className="text-center mb-8">
-              <div className="text-sm font-semibold mb-2" style={{ color: "#f472b6" }}>
-                EVERYTHING INCLUDED
-              </div>
-              <div className="flex items-end justify-center gap-2 mb-2">
-                <span className="text-7xl font-bold">$35</span>
-                <span className="text-xl mb-2" style={{ color: "#a1a1aa" }}>/mo</span>
-              </div>
-              <p style={{ color: "#a1a1aa" }}>
-                Way less than Acuity ($20/mo) or HoneyBook. Way more for service businesses.
-              </p>
-            </div>
-
-            <Link
-              href="https://app.ziggyschedule.com"
-              className="block w-full text-center py-4 rounded-full font-bold text-lg transition-all hover:opacity-90 mb-3"
-              style={{ backgroundColor: "#f472b6", color: "#0f0a0a" }}
-            >
-              Start 14-Day Free Trial
-            </Link>
-            <p className="text-center text-xs mb-8" style={{ color: "#a1a1aa" }}>
-              No credit card required
-            </p>
-
-            <div style={{ borderTop: "1px solid #27272a" }} className="pt-8">
-              <h3 className="font-semibold mb-4">Everything included:</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {included.map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-sm">
-                    <span style={{ color: "#f472b6" }}>✓</span>
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Comparison links */}
-          <div className="mt-6 text-center space-y-2">
-            <p className="text-sm" style={{ color: "#a1a1aa" }}>
-              Comparing options?
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/vs/calendly" style={{ color: "#f472b6" }} className="text-sm hover:underline">
-                ZiggySchedule vs Calendly →
-              </Link>
-              <Link href="/vs/acuity" style={{ color: "#f472b6" }} className="text-sm hover:underline">
-                ZiggySchedule vs Acuity →
-              </Link>
-            </div>
-          </div>
+    <div className="bg-[#0a0a0a] min-h-screen" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+      <MarketingNav />
+      <section className="pt-20 pb-16 px-4 text-center">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#f472b6] mb-4">Pricing</p>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">Simple, honest pricing</h1>
+          <p className="text-xl text-[#b3b3b3] max-w-2xl mx-auto">No seat traps. No hidden fees. Just a price that works.</p>
         </div>
       </section>
-
-      {/* FAQ */}
-      <section className="py-20 px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Frequently asked questions</h2>
-          <div className="space-y-4">
+      <section className="py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            <div className="bg-[#111111] border border-[#1f1f1f] rounded-2xl p-8">
+              <p className="text-sm font-semibold text-[#b3b3b3] uppercase tracking-wider mb-2">Starter</p>
+              <div className="flex items-end gap-1 mb-1"><span className="text-6xl font-bold text-white">$15</span><span className="text-[#b3b3b3] mb-2 text-lg">/mo</span></div>
+              <p className="text-sm text-[#b3b3b3] mb-6">1 user · +$8/additional user</p>
+              <Link href="https://app.ziggyschedule.com/signup" className="block w-full text-center px-6 py-3.5 bg-[#f472b6]/10 border border-[#f472b6]/30 text-[#f472b6] rounded-xl font-semibold hover:bg-[#f472b6]/20 transition-all mb-6">Start free trial</Link>
+              <ul className="space-y-3">{starterFeatures.map((f) => <li key={f} className="flex items-start gap-3 text-[#b3b3b3] text-sm"><svg className="w-4 h-4 text-[#f472b6] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>{f}</li>)}</ul>
+            </div>
+            <div className="bg-[#111111] border-2 border-[#f472b6]/40 rounded-2xl p-8 relative">
+              <div className="absolute -top-3 left-6"><span className="px-3 py-1 bg-[#f472b6] text-white text-xs font-bold rounded-full uppercase">Most Popular</span></div>
+              <p className="text-sm font-semibold text-[#b3b3b3] uppercase tracking-wider mb-2">Pro</p>
+              <div className="flex items-end gap-1 mb-1"><span className="text-6xl font-bold text-white">$35</span><span className="text-[#b3b3b3] mb-2 text-lg">/mo</span></div>
+              <p className="text-sm text-[#b3b3b3] mb-6">10 users included · +$6/additional user</p>
+              <Link href="https://app.ziggyschedule.com/signup" className="block w-full text-center px-6 py-3.5 bg-[#f472b6] text-white rounded-xl font-semibold hover:opacity-90 transition-all mb-6">Start free trial</Link>
+              <ul className="space-y-3">{proFeatures.map((f) => <li key={f} className="flex items-start gap-3 text-[#b3b3b3] text-sm"><svg className="w-4 h-4 text-[#f472b6] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>{f}</li>)}</ul>
+            </div>
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">Feature comparison</h2>
+          <div className="bg-[#111111] border border-[#1f1f1f] rounded-2xl overflow-hidden mb-16">
+            <div className="grid grid-cols-3 bg-[#1a1a1a] border-b border-[#1f1f1f]">
+              <div className="p-4 text-sm font-semibold text-[#b3b3b3]">Feature</div>
+              <div className="p-4 text-sm font-semibold text-white text-center">Starter</div>
+              <div className="p-4 text-sm font-semibold text-[#f472b6] text-center">Pro</div>
+            </div>
+            {compRows.map((r) => (
+              <div key={r.feature} className="grid grid-cols-3 border-b border-[#1f1f1f] last:border-0 hover:bg-[#151515]">
+                <div className="p-4 text-sm text-[#b3b3b3]">{r.feature}</div>
+                <div className="p-4 text-center">
+                  {typeof r.starter === 'boolean' ? (r.starter ? <svg className="w-5 h-5 text-[#f472b6] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg> : <svg className="w-5 h-5 text-[#555] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>) : <span className="text-sm text-[#b3b3b3]">{r.starter}</span>}
+                </div>
+                <div className="p-4 text-center">
+                  {typeof r.pro === 'boolean' ? (r.pro ? <svg className="w-5 h-5 text-[#f472b6] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg> : <svg className="w-5 h-5 text-[#555] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>) : <span className="text-sm text-[#f472b6] font-medium">{r.pro}</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="bg-[#111111] border border-[#1f1f1f] rounded-2xl p-6 mb-8 text-center">
+            <p className="text-[#b3b3b3] text-sm mb-2">vs the competition</p>
+            <div className="flex flex-wrap justify-center gap-8">
+              <div><p className="text-[#b3b3b3] text-sm">Calendly</p><p className="text-2xl font-bold text-white">$16<span className="text-base text-[#b3b3b3]">/mo</span></p></div>
+              <div><p className="text-[#f472b6] text-sm font-medium">ZiggySchedule</p><p className="text-2xl font-bold text-[#f472b6]">$15<span className="text-base text-[#b3b3b3]">/mo</span></p></div>
+              <div><p className="text-[#b3b3b3] text-sm">Acuity Scheduling</p><p className="text-2xl font-bold text-white">$20<span className="text-base text-[#b3b3b3]">/mo</span></p></div>
+            </div>
+          </div>
+          <div className="max-w-2xl mx-auto space-y-3">
+            <h2 className="text-2xl font-bold text-white mb-6 text-center">Pricing FAQ</h2>
             {faqs.map((faq, i) => (
-              <div
-                key={i}
-                className="rounded-2xl p-6"
-                style={{ backgroundColor: "#18181b", border: "1px solid #27272a" }}
-              >
-                <h3 className="font-bold mb-3">{faq.q}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#a1a1aa" }}>
-                  {faq.a}
-                </p>
+              <div key={i} className="bg-[#111111] border border-[#1f1f1f] rounded-2xl overflow-hidden">
+                <button className="w-full flex items-center justify-between p-6 text-left" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                  <span className="text-white font-semibold pr-4">{faq.q}</span>
+                  <svg className={`w-5 h-5 text-[#f472b6] flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                {openFaq === i && <div className="px-6 pb-6"><p className="text-[#b3b3b3] leading-relaxed">{faq.a}</p></div>}
               </div>
             ))}
           </div>
         </div>
       </section>
-
-      <CTABanner />
-    </>
-  );
+      <section className="py-24 px-4 text-center">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-white mb-6">Start your free trial today</h2>
+          <p className="text-xl text-[#b3b3b3] mb-8">14 days free. No credit card required.</p>
+          <Link href="https://app.ziggyschedule.com/signup" className="inline-flex items-center gap-2 px-10 py-5 bg-[#f472b6] text-white rounded-xl font-bold text-xl hover:opacity-90 transition-all">Start Free Trial</Link>
+        </div>
+      </section>
+      <MarketingFooter />
+    </div>
+  )
 }

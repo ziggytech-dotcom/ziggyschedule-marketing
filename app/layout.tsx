@@ -1,64 +1,25 @@
-import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
-import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import type { Metadata } from "next"
+import { Space_Grotesk } from "next/font/google"
+import "./globals.css"
+import { CookieBanner } from "@/app/components/CookieBanner"
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400","500","600","700"], variable: "--font-space-grotesk" })
 
 export const metadata: Metadata = {
-  title: {
-    default: "ZiggySchedule — Online Scheduling Software for Service Businesses",
-    template: "%s | ZiggySchedule",
-  },
-  description:
-    "The scheduling tool that works as hard as you do. Unlimited bookings, intake forms, team scheduling, and paid bookings. Starting at $15/mo. 14-day free trial.",
-  keywords: [
-    "online scheduling",
-    "booking software",
-    "appointment booking",
-    "client scheduling",
-    "service business booking",
-  ],
-  openGraph: {
-    title: "ZiggySchedule — Let Clients Book Themselves",
-    description:
-      "Stop the back-and-forth. Share your link. Clients pick a time. Done. $19/mo.",
-    url: "https://ziggyschedule.com",
-    siteName: "ZiggySchedule",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "ZiggySchedule — Let Clients Book Themselves",
-    description: "Stop the back-and-forth. $19/mo online booking for service businesses.",
-  },
+  title: { default: "ZiggySchedule — Scheduling that works as hard as you do", template: "%s | ZiggySchedule" },
+  description: "Scheduling that works as hard as you do. Part of the ZiggyTech Business Suite.",
+  openGraph: { title: "ZiggySchedule — Scheduling that works as hard as you do", description: "Scheduling that works as hard as you do.", siteName: "ZiggySchedule", url: "https://ziggyschedule.com" },
+  icons: { icon: '/favicon.ico' },
   metadataBase: new URL("https://ziggyschedule.com"),
+}
 
-  icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={spaceGrotesk.variable}>
-      <body style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+      <body className="bg-[#0a0a0a] text-white antialiased" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        {children}
+        <CookieBanner />
       </body>
     </html>
-  );
+  )
 }

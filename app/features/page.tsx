@@ -1,259 +1,64 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import CTABanner from "../components/CTABanner";
+import Link from 'next/link'
+import { MarketingNav } from '@/app/components/Nav'
+import { MarketingFooter } from '@/app/components/Footer'
 
-export const metadata: Metadata = {
-  title: "Features — Online Scheduling Software for Service Businesses",
-  description:
-    "ZiggySchedule features: booking pages, calendar embed, timezone detection, cancellation policies, package bookings, group events, team scheduling. $19/mo.",
-  openGraph: {
-    title: "ZiggySchedule Features — Everything for Service Business Scheduling",
-    description: "Booking pages, calendar embed, timezone detection, cancellation policies, packages, and more. $19/mo.",
-    url: "https://ziggyschedule.com/features",
-  },
-};
-
-const featureSections = [
-  {
-    id: "booking-experience",
-    label: "BOOKING EXPERIENCE",
-    title: "A booking experience clients actually love",
-    description:
-      "Your clients deserve a seamless booking experience — not 6 emails and a phone call. ZiggySchedule gives you a professional booking page, embed widget, and smart automations that make booking effortless.",
-    features: [
-      {
-        icon: "📅",
-        title: "Beautiful Booking Page",
-        desc: "A branded booking page at ziggyschedule.com/book/your-name (or your custom domain). Clients pick a service, pick a time, and book — no account needed.",
-      },
-      {
-        icon: "🔗",
-        title: "Calendar Embed Widget",
-        desc: "One line of code embeds your full booking calendar on any website. Works with Squarespace, Wix, WordPress, Webflow, and raw HTML.",
-      },
-      {
-        icon: "🌎",
-        title: "Timezone Auto-Detection",
-        desc: "Your booking page detects the client's timezone automatically. They see times in their local time. No confusion, no missed calls.",
-      },
-      {
-        icon: "📧",
-        title: "Automated Email Reminders",
-        desc: "Confirmations, reminders, and follow-ups go out automatically. Reduce no-shows without lifting a finger.",
-      },
-      {
-        icon: "🎨",
-        title: "Custom Branding",
-        desc: "Add your logo, brand colors, and profile photo. Your booking page looks like you, not like a generic SaaS tool.",
-      },
-      {
-        icon: "📱",
-        title: "Mobile-First Design",
-        desc: "Clients book from their phone just as easily as their desktop. No pinching, no zooming, no frustration.",
-      },
-    ],
-  },
-  {
-    id: "calendar-management",
-    label: "CALENDAR MANAGEMENT",
-    title: "Your calendar, finally under control",
-    description:
-      "Connect your existing calendar, set your availability, and let clients book around your real schedule. ZiggySchedule checks your calendar before every booking.",
-    features: [
-      {
-        icon: "🔄",
-        title: "Google & Outlook Sync",
-        desc: "Two-way sync with Google Calendar and Outlook. ZiggySchedule reads your existing events and blocks time automatically.",
-      },
-      {
-        icon: "⏰",
-        title: "Availability Rules",
-        desc: "Set your working hours, buffer time between meetings, and minimum booking notice. Clients can only book times that actually work for you.",
-      },
-      {
-        icon: "🚫",
-        title: "Blackout Dates",
-        desc: "Block out holidays, vacations, and busy periods with a few clicks. No one books during your time off.",
-      },
-      {
-        icon: "🔢",
-        title: "Booking Limits",
-        desc: "Cap how many appointments you take per day or week. Protect your capacity without awkward conversations.",
-      },
-      {
-        icon: "📆",
-        title: "Multiple Services",
-        desc: "Offer different service types with different durations, prices, and availability. One booking page, multiple offerings.",
-      },
-      {
-        icon: "👥",
-        title: "Group Events & Classes",
-        desc: "Run yoga classes, webinars, group coaching sessions, or workshops with seat limits and automatic waitlists.",
-      },
-    ],
-  },
-  {
-    id: "payments-policies",
-    label: "PAYMENTS & POLICIES",
-    title: "Get paid. Protect your time.",
-    description:
-      "Take deposits, sell packages, enforce cancellation policies, and manage no-shows — all automatically. Stop losing money to last-minute cancellations.",
-    features: [
-      {
-        icon: "💳",
-        title: "Online Payments",
-        desc: "Accept payments at booking via Stripe. Require deposits or full payment upfront. Money hits your account before the appointment.",
-      },
-      {
-        icon: "🚫",
-        title: "Cancellation Policy",
-        desc: "Set minimum notice windows (e.g., 24-hour cancellation policy). Charge a fee for late cancellations or no-shows automatically.",
-      },
-      {
-        icon: "📦",
-        title: "Package Bookings",
-        desc: "Sell 5-session, 10-session, or monthly packages. Clients pre-pay and auto-book sessions from their package balance.",
-      },
-      {
-        icon: "🎁",
-        title: "Gift Cards & Vouchers",
-        desc: "Let clients give the gift of your services. Gift cards redeemable at checkout, tracked automatically.",
-      },
-      {
-        icon: "📊",
-        title: "Revenue Reporting",
-        desc: "See your bookings, revenue, and cancellations in one dashboard. Know your numbers without a spreadsheet.",
-      },
-      {
-        icon: "🔁",
-        title: "Recurring Appointments",
-        desc: "Clients can book the same time every week, two weeks, or month. Perfect for ongoing coaching or recurring sessions.",
-      },
-    ],
-  },
-  {
-    id: "team-scheduling",
-    label: "TEAM SCHEDULING",
-    title: "Built for teams, too",
-    description:
-      "Manage a team of service providers? ZiggySchedule handles multi-staff scheduling, round-robin assignment, and location-based routing.",
-    features: [
-      {
-        icon: "👤",
-        title: "Staff Profiles",
-        desc: "Each team member gets their own booking page and schedule. Clients can choose their preferred provider.",
-      },
-      {
-        icon: "🔄",
-        title: "Round-Robin Assignment",
-        desc: "Distribute bookings evenly across your team automatically. No manual assignment needed.",
-      },
-      {
-        icon: "📍",
-        title: "Multiple Locations",
-        desc: "Manage bookings across multiple locations. Clients pick the location closest to them.",
-      },
-      {
-        icon: "📋",
-        title: "Team Calendar View",
-        desc: "See all team members' schedules in one view. Spot gaps, manage capacity, stay coordinated.",
-      },
-      {
-        icon: "🔔",
-        title: "Staff Notifications",
-        desc: "Each team member gets notified of their own bookings. No one misses an appointment.",
-      },
-      {
-        icon: "📈",
-        title: "Team Performance",
-        desc: "Track bookings and revenue per team member. Identify your busiest providers and peak times.",
-      },
-    ],
-  },
-];
+const features = [
+  { title: `Unlimited Bookings`, desc: `No booking limits, ever. Whether you have 10 appointments a month or 10,000, your price stays the same.`, bullets: [`No booking caps`, `Unlimited appointment types`, `Unlimited booking pages`, `Buffer time between meetings`, `Max daily limits`, `Advance booking windows`] },
+  { title: `Intake Forms`, desc: `Collect the information you need before the meeting. Ask custom questions and qualify leads upfront.`, bullets: [`Custom question builder`, `Required vs optional fields`, `File upload support`, `Conditional logic`, `Pre-meeting reminders`, `Answers visible in dashboard`] },
+  { title: `Team Scheduling`, desc: `Round-robin assignment, collective availability, and team booking pages. Clients book the next available team member.`, bullets: [`Round-robin assignment`, `Collective availability`, `Team booking pages`, `Max per-person daily limits`, `Admin override`, `Team analytics`] },
+  { title: `SMS Reminders`, desc: `Reduce no-shows with automated SMS reminders powered by Twilio.`, bullets: [`Twilio-powered SMS`, `Custom reminder timing`, `Confirmation messages`, `Cancellation notifications`, `Reschedule link in SMS`, `Two-way SMS replies`] },
+  { title: `Stripe Payments`, desc: `Collect payment at booking. Charge upfront, require deposits, or let clients pay after.`, bullets: [`Upfront payment`, `Deposit requirements`, `No-show protection`, `Automatic refund support`, `Coupon codes`, `Payment receipts`] },
+  { title: `Google Calendar Sync`, desc: `Bidirectional sync with Google Calendar. Block times automatically and prevent double bookings.`, bullets: [`Bidirectional sync`, `Multiple calendar connection`, `Automatic conflict blocking`, `Personal calendar privacy`, `Outlook sync (coming soon)`, `iCal feed support`] },
+]
 
 export default function FeaturesPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="pt-20 pb-16 px-4 sm:px-6 text-center">
-        <div
-          className="inline-block text-xs px-3 py-1 rounded-full mb-6"
-          style={{ backgroundColor: "#18181b", color: "#f472b6", border: "1px solid #f472b6" }}
-        >
-          FEATURES
-        </div>
-        <h1 className="text-5xl sm:text-6xl font-bold mb-6">
-          Everything you need to<br />
-          <span style={{ color: "#f472b6" }}>run your booking business</span>
-        </h1>
-        <p className="text-xl max-w-2xl mx-auto mb-8" style={{ color: "#a1a1aa" }}>
-          Booking pages, calendar embed, timezone detection, payments, cancellation policies,
-          packages, and group events. All in one plan. $19/mo.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="https://app.ziggyschedule.com"
-            className="px-8 py-3 rounded-full font-semibold transition-all hover:opacity-90"
-            style={{ backgroundColor: "#f472b6", color: "#0f0a0a" }}
-          >
-            Start Free Trial
-          </Link>
-          <Link href="/pricing" style={{ color: "#a1a1aa" }} className="text-sm hover:text-white">
-            See pricing →
+    <div className="bg-[#0a0a0a] min-h-screen" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+      <MarketingNav />
+      <section className="relative overflow-hidden pt-20 pb-16 px-4">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#f472b6]/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-4xl mx-auto text-center relative">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#f472b6] mb-4">Features</p>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">Everything ZiggySchedule can do</h1>
+          <p className="text-xl text-[#b3b3b3] max-w-2xl mx-auto mb-8">Every feature explained. No fluff.</p>
+          <Link href="https://app.ziggyschedule.com/signup" className="inline-flex items-center gap-2 px-8 py-4 bg-[#f472b6] text-white rounded-xl font-semibold text-lg hover:opacity-90 transition-all">
+            Start Free Trial — 14 days free
           </Link>
         </div>
       </section>
-
-      {/* Quick nav */}
-      <div className="sticky top-16 z-40 py-3 px-4 sm:px-6 overflow-x-auto" style={{ backgroundColor: "rgba(15,10,10,0.95)", borderBottom: "1px solid #27272a", backdropFilter: "blur(8px)" }}>
-        <div className="max-w-6xl mx-auto flex items-center gap-6 text-sm whitespace-nowrap">
-          {featureSections.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className="hover:text-white transition-colors" style={{ color: "#a1a1aa" }}>
-              {s.label.split(" ").map(w => w[0] + w.slice(1).toLowerCase()).join(" ")}
-            </a>
+      <section className="py-16 px-4">
+        <div className="max-w-5xl mx-auto space-y-16">
+          {features.map((f, i) => (
+            <div key={f.title} className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 items-start`}>
+              <div className="flex-1">
+                <h2 className="text-3xl font-bold text-white mb-4">{f.title}</h2>
+                <p className="text-lg text-[#b3b3b3] leading-relaxed mb-6">{f.desc}</p>
+                <ul className="space-y-2">
+                  {f.bullets.map((b) => (
+                    <li key={b} className="flex items-center gap-3 text-[#b3b3b3]">
+                      <div className="w-5 h-5 rounded-full bg-[#f472b6]/20 border border-[#f472b6]/40 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-[#f472b6]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex-1 bg-[#111111] border border-[#1f1f1f] rounded-2xl aspect-video flex items-center justify-center">
+                <p className="text-[#555] text-sm">Screenshot coming soon</p>
+              </div>
+            </div>
           ))}
         </div>
-      </div>
-
-      {/* Feature Sections */}
-      {featureSections.map((section, idx) => (
-        <section
-          key={section.id}
-          id={section.id}
-          className="py-20 px-4 sm:px-6"
-          style={{ backgroundColor: idx % 2 === 1 ? "rgba(24,24,27,0.3)" : "transparent" }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <div
-                className="inline-block text-xs px-3 py-1 rounded-full mb-4"
-                style={{ backgroundColor: "#18181b", color: "#f472b6", border: "1px solid #f472b6" }}
-              >
-                {section.label}
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">{section.title}</h2>
-              <p className="max-w-2xl mx-auto" style={{ color: "#a1a1aa" }}>{section.description}</p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {section.features.map((f) => (
-                <div
-                  key={f.title}
-                  className="rounded-2xl p-6"
-                  style={{ backgroundColor: "#18181b", border: "1px solid #27272a" }}
-                >
-                  <div className="text-3xl mb-3">{f.icon}</div>
-                  <h3 className="font-bold text-lg mb-2">{f.title}</h3>
-                  <p className="text-sm" style={{ color: "#a1a1aa" }}>{f.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
-
-      <CTABanner />
-    </>
-  );
+      </section>
+      <section className="py-24 px-4 text-center">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-white mb-6">Ready to see it in action?</h2>
+          <p className="text-xl text-[#b3b3b3] mb-8">14-day free trial. No credit card required.</p>
+          <Link href="https://app.ziggyschedule.com/signup" className="inline-flex items-center gap-2 px-10 py-5 bg-[#f472b6] text-white rounded-xl font-bold text-xl hover:opacity-90 transition-all">Start Free Trial</Link>
+        </div>
+      </section>
+      <MarketingFooter />
+    </div>
+  )
 }
