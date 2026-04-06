@@ -48,8 +48,7 @@ export default function HomePage() {
             ZiggySchedule — Scheduling for local business
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight tracking-tight mb-6">
-            Scheduling that works as hard as you do.{' '}
-            {tagline.split('. ').length > 1 && <span className="text-[#f472b6]"></span>}
+            Scheduling that works as hard as you do
           </h1>
           <p className="text-xl md:text-2xl text-[#b3b3b3] max-w-3xl mx-auto leading-relaxed mb-10">
             We tried Calendly for our agency. At $16/user/month for a 10-person team, we were paying $160/month just to let people book meetings. We built the same thing for $35/mo total.
